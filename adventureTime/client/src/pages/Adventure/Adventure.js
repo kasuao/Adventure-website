@@ -18,6 +18,29 @@ class Adventure extends Component {
     diffRating: 3
   };
 
+  componentDidMount(){
+    this.getData();
+    // this.popData();
+  }
+// this function pushes data to the server. 
+  popData = test =>{
+    API.saveAdventure({
+    "user": "TST", //TODO I don't know if this is right...do I set the value as an object?
+    "title": "Nebo TSTLoop",
+    "description": "A TSTfun family hike",
+    "directions": "that wTSTay",
+    "location": "SomewherTSTe",
+    "category": "HikinTSTg",
+    "funRating": 5,
+    "diffRating": 3})
+  }
+
+  getData = event => {
+    API.getAdventure()
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  };
+
   
   render() {
     return (

@@ -14,7 +14,10 @@ export default {
     return axios.delete("/api/adventures/" + id);
   },
   // Saves a adventure to the database
-  saveAdventure: function(bookData) {
+  saveAdventure: function(adventureData) {
     return axios.post("/api/adventures", adventureData);
+  },
+  getAdventure: function() {
+    return axios.get("/api/adventures");
   }
 };
