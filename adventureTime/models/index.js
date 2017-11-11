@@ -1,3 +1,4 @@
 module.exports = {
-  Adventure: require("./adventure")
+  Adventure: require("./adventure"),
+  Users: require("./users")
 };
