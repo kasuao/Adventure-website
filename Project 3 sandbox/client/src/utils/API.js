@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getBooks: function() {
-    return axios.get("/api/books");
+  // Gets all adventures
+  getAdventure: function() {
+    return axios.get("/api/adventures");
   },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  // Gets the adventure with the given id
+  getAdventure: function(id) {
+    return axios.get("/api/adventures/" + id);
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
+  // Deletes the adventure with the given id
+  deleteAdventure: function(id) {
+    return axios.delete("/api/adventures/" + id);
   },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
+  // Saves a adventure to the database
+  saveAdventure: function(bookData) {
+    return axios.post("/api/adventures", adventureData);
   }
 };
