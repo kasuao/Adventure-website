@@ -8,14 +8,7 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 
 class Adventure extends Component {
   state = {
-    user: "Kelcey A.", //TODO I don't know if this is right...do I set the value as an object?
-    title: "Nebo Loop",
-    description: "A fun family hike",
-    directions: "that way",
-    location: "Somewhere",
-    category: "Hiking",
-    funRating: 5,
-    diffRating: 3
+    adventures: [],
   };
 
   componentDidMount(){
@@ -35,9 +28,9 @@ class Adventure extends Component {
     "diffRating": 3})
   }
 
-  getData = event => {
-    API.getAdventure()
-      .then(res => console.log(res.data))
+getData = event => {
+    API.getAdventures()
+      .then(res => this.setState({ adventures: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -45,18 +38,22 @@ class Adventure extends Component {
   render() {
     return (
       <Container fluid>
-        <h1>{this.state.category}</h1>
-        <h1>{this.state.title}</h1>
-        <h2>Description: </h2>
-        <p>{this.state.description}</p>
-        <h2>Directions: </h2>
-        <p>{this.state.directions}</p>
-        <h2>Location: </h2>
-        <p>{this.state.location}</p>
-        <h2>Description: </h2>
-        <p>{this.state.description}</p>
-        <h4>Fun Rating: {this.state.funRating}</h4>
-        <h4>Difficulty Rating: {this.state.diffRating}</h4>
+        {this.state.adventures.map(adventure => (
+        <div>
+            <h1>{adventure.category}</h1>
+            <h1>{adventure.title}</h1>
+            <h2>Description: </h2>
+            <p>{adventure.description}</p>
+            <h2>Directions: </h2>
+            <p>{adventure.directions}</p>
+            <h2>Location: </h2>
+            <p>{adventure.location}</p>
+            <h2>Description: </h2>
+            <p>{adventure.description}</p>
+            <h4>Fun Rating: {adventure.funRating}</h4>
+            <h4>Difficulty Rating: {adventure.diffRating}</h4>
+        </div>
+        ))} 
       </Container>
     );
   }

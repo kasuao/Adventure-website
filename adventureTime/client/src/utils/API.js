@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
   // Gets all adventures
-  getAdventure: function() {
+  getAdventures: function() {
     return axios.get("/api/adventures");
   },
   // Gets the adventure with the given id
