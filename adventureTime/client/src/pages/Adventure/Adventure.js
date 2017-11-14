@@ -24,7 +24,7 @@ class Adventure extends Component {
   //   "category": "HikinTSTg",
   //   "funRating": 5,
   //   "diffRating": 3})
-  }
+  // }
 
 getData = event => {
     API.getAdventures()
