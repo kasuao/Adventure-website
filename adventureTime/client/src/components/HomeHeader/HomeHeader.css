@@ -1,0 +1,36 @@
+#siteTitle{
+	font-size: 40px;
+}
+
+#loginSubmit{
+	position:absolute;
+	top: 110px;
+	right:10%;
+}
+#loginPassword{
+	position:absolute;
+	right:10px;
+	top:1px;
+}
+#loginEmail{
+	position:absolute;
+	right:300px;
+	top:1px;
+}
+@media screen and (max-width: 900px) {
+    #loginSubmit{
+	position:absolute;
+	top: 110px;
+	right:30%;
+	}
+	#loginPassword{
+		position:absolute;
+		right:45%;
+		top:70px;
+	}
+	#loginEmail{
+		position:absolute;
+		right:75%;
+		top:70px;
+	}
+}
