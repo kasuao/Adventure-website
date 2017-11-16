@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Adventure from "./pages/Adventure";
 import Home from "./pages/Home";
-import Categories from "./pages/Categories";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 // what shows in the html below is what will appeal on the home page.
