@@ -1,7 +1,6 @@
 import React from "react";
 import "./HomeHeader.css";
 
-//Create the Header of our homepage as a component.
 const HomeHeader = props =>
   <div className="homeHeader">
     <h1 id="siteTitle">ADVENTURE AWAITS</h1>
