@@ -1,0 +1,17 @@
+#createUser{
+	color:black;
+	position: absolute;
+	right:25%;
+	border: solid black 2px;
+	background-color: white;
+	top:7%;
+	left:25%;
+	box-shadow: 10px 10px 5px #888888;
+	border-radius: 10px;
+	margin-bottom: 50px;
+}
+#closeWindow{
+	cursor: pointer;
+	width:15px;
+	margin-left: 47%;
+}

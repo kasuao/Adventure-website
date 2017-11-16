@@ -1,6 +1,7 @@
 import React from "react";
 import "./HomeHeader.css";
-console.log(this.props)
+
+//Create the Header of our homepage as a component.
 const HomeHeader = props =>
   <div className="homeHeader">
     <h1 id="siteTitle">ADVENTURE AWAITS</h1>
@@ -20,7 +21,7 @@ const HomeHeader = props =>
 			</div>
 		</div>
 		<div>
-			<p onClick={props.handleUserCreate}>Create an Account</p>
+			<p onClick={props.handleUserCreate} id="create">Create an Account</p>
 		</div>
 		<input id="loginSubmit" type="submit" value="Login" />
 	</form>
