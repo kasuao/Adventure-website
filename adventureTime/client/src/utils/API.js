@@ -17,7 +17,21 @@ export default {
   saveAdventure: function(adventureData) {
     return axios.post("/api/adventures", adventureData);
   },
-  getAdventure: function() {
-    return axios.get("/api/adventures");
+
+    // Gets all users
+  getUser: function() {
+    return axios.get("/api/users");
+  },
+  // Gets the user with the given id
+  getUser: function(id) {
+    return axios.get("/api/users/" + id);
+  },
+  // Deletes the User with the given id
+  deleteUser: function(id) {
+    return axios.delete("/api/users/" + id);
+  },
+  // Saves a User to the database
+  saveUser: function(adventureData) {
+    return axios.post("/api/users", adventureData);
   }
 };
