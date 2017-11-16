@@ -49,6 +49,7 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
+			
 				<HomeHeader handleUserCreate={this.handleUserCreate}>
 				</HomeHeader>
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
