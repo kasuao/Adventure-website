@@ -9,12 +9,15 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
+  findOne: function(req, res) {
     db.User
-      .findById(req.params.id)
+      .findOne({email:req.params.email})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  /* TODO: create a findOne function so that we can grab a user by 
+  email or something*/
+
   create: function(req, res) {
     db.User
       .create(req.body)
