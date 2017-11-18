@@ -10,7 +10,10 @@ const CreateUserModal = props =>
 			Email: <input className='center' id='newEmail' type='text' name='email'/>
 			Password: <input className='center' id='newPassword' type='password' name='password'/>
 			Confirm Password: <input className='center' id='newPassword2' type='password' name='password2'/>
-			Profile Picture: <input className='center' id='newPassword2' type='password' name='password2'/>
+			Profile Picture: <label className="file-upload-container" for="file-upload">
+        <input id="file-upload" onChange={props.uploadPic} type="file" style={{display:'none'}}/>
+        Select an Image
+      </label><br></br>
 			User Bio: <textarea className="center" id="about" type="text" cols="40" rows="5" style={{width:'400px', height:'100px'}} name="about"></textarea>
 			<button className='center' onClick={props.handleCreateSubmit} type='button'>CREATE</button>
 			<p className='center' id='closeWindow' onClick={props.closeUserCreate}>Close</p>
