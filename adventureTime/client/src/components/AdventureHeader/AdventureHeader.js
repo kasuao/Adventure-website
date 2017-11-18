@@ -17,6 +17,7 @@ const AdventureHeader = props =>
 		 	  </span>
  		 	   us!
  		 	   </h1> 
+ 		 	   <h3 className="tagline"> Fill me in</h3>
 
 
 
