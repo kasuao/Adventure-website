@@ -8,7 +8,7 @@ const ProfileHeader = props =>
     <h1 id="profileTitle">PROFILE PAGE</h1>
 
     <div>
-        <h2 id="profileName">Awesome Dude 78686</h2>
+        <h2 id="profileName">{props.userName}</h2>
     </div>
 
   </div>
@@ -18,14 +18,19 @@ const ProfileHeader = props =>
 
 
         <div class="blog-post">
-          <img class="thumbnail" src="http://placehold.it/500x300" />
+
+          {/* need to get profile image working */}
+          {/*<img class="thumbnail" src="http://placehold.it/500x300" />*/}
+          <img class="thumbnail" src={props.profileImage}/>
 
     		<div id="aboutMe">
         			<h3>About Me</h3>
         	</div>
 
       		<div class="bio">	
-          		<p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus.</p>
+
+              <p>{props.bio}</p>
+          		{/*<p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus.</p>*/}
       		</div>	
         </div>
 
@@ -91,7 +96,6 @@ const ProfileHeader = props =>
  {/* row ending div */}
  </div>
 
-
         <div class="blog-post">
           <h3>Awesome blog post title <small>3/6/2015</small></h3>
           <img class="thumbnail" src="http://placehold.it/850x350" />
@@ -111,14 +115,5 @@ const ProfileHeader = props =>
         </div>
 
         </div>
-      
-
-      
-
-      
-    
-	
- 
- 
 
 export default ProfileHeader;
