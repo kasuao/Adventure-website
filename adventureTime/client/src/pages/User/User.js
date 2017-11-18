@@ -10,25 +10,25 @@ class User extends Component {
 
   componentDidMount(){
     this.getData();
-    this.popData();
+    // this.popData();
   }
 
   // this function pushes data to the server. 
-  popData = test =>{
-    API.saveUser({
-    "firstName": "TST", 
-    "lastName": "Nebo",
-    "email": "A TSTfun family hike",
-    "password": "thatwTSTay",
-    "about": "SomewherTSTe",
-    "adventureLevel": "10",
-    })
-    .then(res => console.log(res))
-  }
+  // popData = test =>{
+  //   API.saveUser({
+  //   "firstName" : "Lara",
+  //   "lastName" : "Croft",
+  //   "email" : "laracroft@tombraider.com",
+  //   "password" : "password",
+  //   "about" : "she is a woman who travels the world in search of forgotten artifacts and locations, frequently connected to supernatural powers.She is the only daughter and heir of the aristocratic Croft family. She is intelligent, athletic, elegant, fluent in multiple languages, and determined to fulfill her own goals at any cost. She has brown eyes and brown hair mostly worn in a braid or ponytail. ",
+  //   "adventureLevel" : 10
+  //   })
+  //   .then(res => console.log(res))
+  // }
 
 
 getData = event => {
-    API.getUser("5a0d0ee5a049231578966062")
+    API.getUser("laracroft@tombraider.com")
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
   };

@@ -23,8 +23,8 @@ export default {
     return axios.get("/api/users");
   },
   // Gets the user with the given id
-  getUser: function(id) {
-    return axios.get("/api/users/" + id);
+  getUser: function(email) {
+    return axios.get("/api/users/" + email);
   },
   // Deletes the User with the given id
   deleteUser: function(id) {
