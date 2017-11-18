@@ -1,0 +1,26 @@
+.hiking {
+	color:black;
+	border:black double 3px;
+	height:300px;
+	margin-bottom: 2px;
+}
+
+
+.mountain-biking {
+	color:black;
+	border:black double 3px;
+	height:300px;
+	margin-bottom: 2px;
+}
+
+.fishing {
+	color:black;
+	border:black double 3px;
+	padding-top: 10px;
+	height:300px;
+	margin-bottom: 2px;
+}
+
+.Footer {
+	margin-top: 20px;
+}
