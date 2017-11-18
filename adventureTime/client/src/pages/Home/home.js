@@ -11,13 +11,26 @@ import "./home.css";
 class Home extends Component {
 //declare and store state variables
 	state = {
-		createUser: 0
+		createUser: 0,
+		pictureToUpload: {name:"Upload Image"},
+		uploadPictureData: "",
+		cloudinary_url: "https://api.cloudinary.com/v1_1/copilot28/upload",
+
+		//store the information being sent to the database here.
+		firstName: "",
+		lastName: "",
+		userName: "",
+		email: "",
+		password: "",
+		profilePic: "",
+		about: "",
+		adventureLevel: ""
 	};
 
 	constructor(props){
 		super(props)
 		this.handleUserCreate = this.handleUserCreate.bind(this);
-	}
+	};
 
 	/*this function will run when the "Create an Account" text is clicked by the user.
 		when this is clicked it will set a state variable to 1. when this state variable is 1,
@@ -44,28 +57,36 @@ class Home extends Component {
 	//const fileUpload = document.getElementById('file-upload');
 
 	uploadPic = (event) => {
-		const cloudinary_url = "https://api.cloudinary.com/v1_1/copilot28/upload";
-		const cloudinary_upload_preset = "ugswizji";
 		const file = event.target.files[0];
 		const formData = new FormData();
+		const cloudinary_url = "https://api.cloudinary.com/v1_1/copilot28/upload";
+		const cloudinary_upload_preset = "ugswizji";
 		formData.append('file', file);
 		formData.append('upload_preset', cloudinary_upload_preset);
-		console.log("file:");
-		console.log(file);
+		this.setState({
+      pictureToUpload: file,
+      uploadPictureData: formData
+    })
 
-		axios({
-			url: cloudinary_url,
-			method: "post",
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			data: formData
-			}).then(function(res){
-				console.log(res);
-			}).catch(function(err){
-				console.log(err);
-			});
+	};
 
+	/*
+		This function pushes data to the server when the create user submit button is pressed.
+		Prior to submitting to the database, the information being submitted will be verified to ensure it is okay to push.
+	*/
+  popData = () =>{
+  	console.log("hits popData")
+    API.saveUser({
+    "firstName" : this.state.firstName,
+    "lastName" : this.state.firstName,
+    "userName" : this.state.userName,
+    "email" : this.state.firstName,
+    "password" : this.state.firstName,
+    "profilePic": this.state.profilePic,
+    "about" : this.state.firstName,
+    "adventureLevel" : this.state.profilePic
+  })
+  .then(res => console.log(res))
 	};
 
 	/*
@@ -73,8 +94,36 @@ class Home extends Component {
 		This will be a post route to send the user information to the database. 
 	*/
 	handleCreateSubmit = () => {
-		alert("submitted");
-	}
+		//populate the state variables with the entered information.
+		this.setState({
+      firstName: document.getElementById("newFname").value,
+			lastName: document.getElementById("newLname").value,
+			userName: document.getElementById("newUserName").value,
+			email: document.getElementById("newEmail").value,
+			password: document.getElementById("newPassword").value,
+			profilePic: "testing",
+			about: document.getElementById("about").value,
+			adventureLevel: document.getElementById("newAdLvl").value
+    })
+  	console.log("form data");
+
+  	//send a call to the cloudinary API to post a new user picture.
+		axios({
+			url: this.state.cloudinary_url,
+			method: "post",
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: this.state.uploadPictureData
+			}).then(function(res){
+				console.log(res);
+				//after the axios call has been made, send our data to the database.
+				//this.popData();
+				alert("submitted");
+			}).catch(function(err){
+				console.log(err);
+			});
+	};
 
 	render() {
 		return (
@@ -86,9 +135,14 @@ class Home extends Component {
 				style={{position:'absolute', top:'150px'}}/>
 				<Footer>
 				</Footer>
-				{this.state.createUser ? <CreateUserModal handleCreateSubmit={this.handleCreateSubmit} closeUserCreate={this.closeUserCreate} uploadPic={this.uploadPic}>
-					</CreateUserModal>
-				 : ""}
+				{this.state.createUser ? 
+						<CreateUserModal 
+						handleCreateSubmit={this.handleCreateSubmit} 
+						closeUserCreate={this.closeUserCreate} 
+						pictureToUpload={this.state.pictureToUpload.name} 
+						uploadPic={this.uploadPic}>
+						</CreateUserModal>
+				: ""}
 			</div>
 		);
 	}
