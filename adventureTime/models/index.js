@@ -1,4 +1,4 @@
 module.exports = {
   Adventure: require("./adventure"),
-  Users: require("./users")
+  User: require("./user")
 };

@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Adventure from "./pages/Adventure";
+import User from "./pages/User";
 import Home from "./pages/Home";
 import Categories from "./pages/Categories";
+import Profile from "./pages/Profile";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 // what shows in the html below is what will appeal on the home page.
@@ -22,6 +24,8 @@ const App = () =>
 
 
         {/*<Route exact path="/user" component={user} />*/}
+        <Route exact path="/user" component={User} />
+        <Route exact path="/profile" component={Profile} />
       </Switch>
     </div>
   </Router>;

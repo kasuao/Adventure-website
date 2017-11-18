@@ -19,7 +19,7 @@ export default {
   },
 
     // Gets all users
-  getUser: function() {
+  getUsers: function() {
     return axios.get("/api/users");
   },
   // Gets the user with the given id
@@ -31,7 +31,8 @@ export default {
     return axios.delete("/api/users/" + id);
   },
   // Saves a User to the database
-  saveUser: function(adventureData) {
-    return axios.post("/api/users", adventureData);
+  saveUser: function(userData) {
+    console.log(userData);
+    return axios.post("/api/users/", userData);
   }
 };
