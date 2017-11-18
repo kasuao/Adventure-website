@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+import axios from "axios";
 //import the used components
 import Footer from "../../components/Footer";
 import HomeHeader from "../../components/HomeHeader";
@@ -36,7 +37,36 @@ class Home extends Component {
 		this.setState({
       createUser: false
     })
-	}
+	};
+	
+	//declare cloudinary information
+	//const imgPreview = document.getElementById('img-preview');
+	//const fileUpload = document.getElementById('file-upload');
+
+	uploadPic = (event) => {
+		const cloudinary_url = "https://api.cloudinary.com/v1_1/copilot28/upload";
+		const cloudinary_upload_preset = "ugswizji";
+		const file = event.target.files[0];
+		const formData = new FormData();
+		formData.append('file', file);
+		formData.append('upload_preset', cloudinary_upload_preset);
+		console.log("file:");
+		console.log(file);
+
+		axios({
+			url: cloudinary_url,
+			method: "post",
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: formData
+			}).then(function(res){
+				console.log(res);
+			}).catch(function(err){
+				console.log(err);
+			});
+
+	};
 
 	/*
 		This function will run whenever the "submit" button is clicked in the new user modal
@@ -49,14 +79,14 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-			
+
 				<HomeHeader handleUserCreate={this.handleUserCreate}>
 				</HomeHeader>
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
 				style={{position:'absolute', top:'150px'}}/>
 				<Footer>
 				</Footer>
-				{this.state.createUser ? <CreateUserModal handleCreateSubmit={this.handleCreateSubmit} closeUserCreate={this.closeUserCreate}>
+				{this.state.createUser ? <CreateUserModal handleCreateSubmit={this.handleCreateSubmit} closeUserCreate={this.closeUserCreate} uploadPic={this.uploadPic}>
 					</CreateUserModal>
 				 : ""}
 			</div>
