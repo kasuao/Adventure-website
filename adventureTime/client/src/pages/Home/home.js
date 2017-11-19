@@ -96,7 +96,7 @@ class Home extends Component {
 	handleCreateSubmit = () => {
 		//populate the state variables with the entered information.
 		this.setState({
-      firstName: document.getElementById("newFname").value,
+      		firstName: document.getElementById("newFname").value,
 			lastName: document.getElementById("newLname").value,
 			userName: document.getElementById("newUserName").value,
 			email: document.getElementById("newEmail").value,

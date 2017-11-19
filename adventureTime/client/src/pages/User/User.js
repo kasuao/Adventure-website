@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
 import ProfileHeader from "../../components/ProfileHeader";
+import Nav from "../../components/Nav";
 
 
 class User extends Component {
@@ -45,18 +46,21 @@ getData = event => {
   render() {
     return (
 
-      <ProfileHeader
-        userName={this.state.userName}
-        /*profileName={this.state.profileImage}*/
-        profileImage={this.state.profileImage}
-        bio={this.state.bio}
-        >
-      
+      <div>
 
+        <Nav>
+        
+        </Nav>
 
+        <ProfileHeader
+          userName={this.state.userName}
+          /*profileName={this.state.profileImage}*/
+          profileImage={this.state.profileImage}
+          bio={this.state.bio}
+          >
+        </ProfileHeader>
 
-
-      </ProfileHeader>
+      </div>
 
     /* og user.js html 
 
