@@ -17,7 +17,7 @@ class Home extends Component {
 		cloudinary_url: "https://api.cloudinary.com/v1_1/copilot28/upload",
 
 		//store the information being sent to the database here.
-		firstName: "",
+		firstName: "test",
 		lastName: "",
 		userName: "",
 		email: "",
@@ -90,23 +90,33 @@ class Home extends Component {
 	};
 
 	/*
+		This function will be ran whenever a value on the CreateUserModal form is changed in any way.
+		This will ensure that the state variables for the entered user information is always kept up to date.
+	*/
+	handleFormChange = (event) =>{
+		var stateObject = function() {
+			let dynamicStateChange = {};
+			dynamicStateChange[this.target.name] = this.target.value;
+		   return dynamicStateChange;
+    }.bind(event)();
+		this.setState(stateObject);
+	};
+
+	/*
 		This function will run whenever the "submit" button is clicked in the new user modal
 		This will be a post route to send the user information to the database. 
 	*/
 	handleCreateSubmit = () => {
-		//populate the state variables with the entered information.
-		this.setState({
-      		firstName: document.getElementById("newFname").value,
-			lastName: document.getElementById("newLname").value,
-			userName: document.getElementById("newUserName").value,
-			email: document.getElementById("newEmail").value,
-			password: document.getElementById("newPassword").value,
-			profilePic: "testing",
-			about: document.getElementById("about").value,
-			adventureLevel: document.getElementById("newAdLvl").value
-    })
-  	console.log("form data");
 
+		//set temporary variables to the current state variables to be used inside the function scope.
+		const tempFirst = this.state.firstName;
+		const tempLast = this.state.lastName;
+		const tempUserName = this.state.userName;
+		const tempEmail = this.state.email;
+		const tempPassword = this.state.password;
+		const tempAbout = this.state.about;
+		const tempAdventureLevel = this.state.adventureLevel;
+    
   	//send a call to the cloudinary API to post a new user picture.
 		axios({
 			url: this.state.cloudinary_url,
@@ -118,17 +128,27 @@ class Home extends Component {
 			}).then(function(res){
 				console.log(res);
 				//after the axios call has been made, send our data to the database.
-				//this.popData();
+				API.saveUser({
+			    "firstName" : tempFirst,
+			    "lastName" : tempLast,
+			    "userName" : tempUserName,
+			    "email" : tempEmail,
+			    "password" : tempPassword,
+			    "profilePic": res.data.secure_url,
+			    "about" : tempAbout,
+			    "adventureLevel" : tempAdventureLevel
+			  })
 				alert("submitted");
 			}).catch(function(err){
 				console.log(err);
+				alert("error");
 			});
+
 	};
 
 	render() {
 		return (
 			<div>
-
 				<HomeHeader handleUserCreate={this.handleUserCreate}>
 				</HomeHeader>
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
@@ -137,10 +157,11 @@ class Home extends Component {
 				</Footer>
 				{this.state.createUser ? 
 						<CreateUserModal 
-						handleCreateSubmit={this.handleCreateSubmit} 
-						closeUserCreate={this.closeUserCreate} 
-						pictureToUpload={this.state.pictureToUpload.name} 
-						uploadPic={this.uploadPic}>
+							handleFormChange={this.handleFormChange}
+							handleCreateSubmit={this.handleCreateSubmit} 
+							closeUserCreate={this.closeUserCreate} 
+							pictureToUpload={this.state.pictureToUpload.name} 
+							uploadPic={this.uploadPic}>
 						</CreateUserModal>
 				: ""}
 			</div>
