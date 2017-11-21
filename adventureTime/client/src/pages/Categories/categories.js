@@ -8,6 +8,14 @@ import CategoryLayout from "../../components/CategoryLayout";
 import "./categories.css";
 
 class Categories extends Component {
+	// state = {
+	// 	userName:["troutBoy234", "xtremeGuy", "iLuv2Hike"],
+	// 	postedBy:"Posted By:",
+	// 	age:"50"
+
+	// };
+	
+	
 	render() {
 		return(
 			<div>
@@ -16,7 +24,9 @@ class Categories extends Component {
 
 
 
-			<CategoryLayout/>
+			<CategoryLayout age="50" tagline="I Love Adventure"
+		
+			/>
 	
 			
 
