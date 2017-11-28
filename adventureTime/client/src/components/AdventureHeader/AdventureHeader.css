@@ -1,6 +1,7 @@
 .AdventureHeader {
-	background-color: pink;
-	color: purple;
+	color: black;
+	border:black double 5px;
+	margin-bottom: 1px;
 }
 
 

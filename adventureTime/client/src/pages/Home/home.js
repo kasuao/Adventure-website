@@ -11,13 +11,26 @@ import "./home.css";
 class Home extends Component {
 //declare and store state variables
 	state = {
-		createUser: 0
+		createUser: 0,
+		pictureToUpload: {name:"Upload Image"},
+		uploadPictureData: "",
+		cloudinary_url: "https://api.cloudinary.com/v1_1/copilot28/upload",
+
+		//store the information being sent to the database here.
+		firstName: "test",
+		lastName: "",
+		userName: "",
+		email: "",
+		password: "",
+		profilePic: "",
+		about: "",
+		adventureLevel: ""
 	};
 
 	constructor(props){
 		super(props)
 		this.handleUserCreate = this.handleUserCreate.bind(this);
-	}
+	};
 
 	/*this function will run when the "Create an Account" text is clicked by the user.
 		when this is clicked it will set a state variable to 1. when this state variable is 1,
@@ -44,28 +57,49 @@ class Home extends Component {
 	//const fileUpload = document.getElementById('file-upload');
 
 	uploadPic = (event) => {
-		const cloudinary_url = "https://api.cloudinary.com/v1_1/copilot28/upload";
-		const cloudinary_upload_preset = "ugswizji";
 		const file = event.target.files[0];
 		const formData = new FormData();
+		const cloudinary_url = "https://api.cloudinary.com/v1_1/copilot28/upload";
+		const cloudinary_upload_preset = "ugswizji";
 		formData.append('file', file);
 		formData.append('upload_preset', cloudinary_upload_preset);
-		console.log("file:");
-		console.log(file);
+		this.setState({
+      pictureToUpload: file,
+      uploadPictureData: formData
+    })
 
-		axios({
-			url: cloudinary_url,
-			method: "post",
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			data: formData
-			}).then(function(res){
-				console.log(res);
-			}).catch(function(err){
-				console.log(err);
-			});
+	};
 
+	/*
+		This function pushes data to the server when the create user submit button is pressed.
+		Prior to submitting to the database, the information being submitted will be verified to ensure it is okay to push.
+	*/
+  popData = () =>{
+  	console.log("hits popData")
+    API.saveUser({
+    "firstName" : this.state.firstName,
+    "lastName" : this.state.firstName,
+    "userName" : this.state.userName,
+    "email" : this.state.firstName,
+    "password" : this.state.firstName,
+    "profilePic": this.state.profilePic,
+    "about" : this.state.firstName,
+    "adventureLevel" : this.state.profilePic
+  })
+  .then(res => console.log(res))
+	};
+
+	/*
+		This function will be ran whenever a value on the CreateUserModal form is changed in any way.
+		This will ensure that the state variables for the entered user information is always kept up to date.
+	*/
+	handleFormChange = (event) =>{
+		var stateObject = function() {
+			let dynamicStateChange = {};
+			dynamicStateChange[this.target.name] = this.target.value;
+		   return dynamicStateChange;
+    }.bind(event)();
+		this.setState(stateObject);
 	};
 
 	/*
@@ -73,22 +107,63 @@ class Home extends Component {
 		This will be a post route to send the user information to the database. 
 	*/
 	handleCreateSubmit = () => {
-		alert("submitted");
-	}
+
+		//set temporary variables to the current state variables to be used inside the function scope.
+		const tempFirst = this.state.firstName;
+		const tempLast = this.state.lastName;
+		const tempUserName = this.state.userName;
+		const tempEmail = this.state.email;
+		const tempPassword = this.state.password;
+		const tempAbout = this.state.about;
+		const tempAdventureLevel = this.state.adventureLevel;
+    
+  	//send a call to the cloudinary API to post a new user picture.
+		axios({
+			url: this.state.cloudinary_url,
+			method: "post",
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: this.state.uploadPictureData
+			}).then(function(res){
+				console.log(res);
+				//after the axios call has been made, send our data to the database.
+				API.saveUser({
+			    "firstName" : tempFirst,
+			    "lastName" : tempLast,
+			    "userName" : tempUserName,
+			    "email" : tempEmail,
+			    "password" : tempPassword,
+			    "profilePic": res.data.secure_url,
+			    "about" : tempAbout,
+			    "adventureLevel" : tempAdventureLevel
+			  })
+				alert("submitted");
+			}).catch(function(err){
+				console.log(err);
+				alert("error");
+			});
+
+	};
 
 	render() {
 		return (
 			<div>
-
 				<HomeHeader handleUserCreate={this.handleUserCreate}>
 				</HomeHeader>
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
 				style={{position:'absolute', top:'150px'}}/>
 				<Footer>
 				</Footer>
-				{this.state.createUser ? <CreateUserModal handleCreateSubmit={this.handleCreateSubmit} closeUserCreate={this.closeUserCreate} uploadPic={this.uploadPic}>
-					</CreateUserModal>
-				 : ""}
+				{this.state.createUser ? 
+						<CreateUserModal 
+							handleFormChange={this.handleFormChange}
+							handleCreateSubmit={this.handleCreateSubmit} 
+							closeUserCreate={this.closeUserCreate} 
+							pictureToUpload={this.state.pictureToUpload.name} 
+							uploadPic={this.uploadPic}>
+						</CreateUserModal>
+				: ""}
 			</div>
 		);
 	}

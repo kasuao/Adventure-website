@@ -9,8 +9,10 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   /* this function allows a page to display a single user. It
   chooses that user by their email since the email has to be unique*/
+
   findOne: function(req, res) {
     db.User
       .findOne({email:req.params.email})
