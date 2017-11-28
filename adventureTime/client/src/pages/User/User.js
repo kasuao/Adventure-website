@@ -2,10 +2,19 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../../components/Grid";
+import ProfileHeader from "../../components/ProfileHeader";
+import Nav from "../../components/Nav";
+
 
 class User extends Component {
   state = {
     user: {},
+    userName: "Jeff Loomis",
+    profileImage: "http://www.quistic.com/wp-content/uploads/2014/11/quistic-Large-Course-Images-500-x-300.jpg",
+    bio: "Adventure is all about taking each experience, regardless if you know the outcome or not and facing it head on. It is about seeing the world from a different perspective, even if you’ve seen it a million times before. It is choosing to see the beauty from the ordinary and finding ways on how to do it differently."
+
+    // Need to get profile image working..
+    //profileName: "./giraffe_profile.png"
   };
 
   componentDidMount(){
@@ -27,6 +36,7 @@ class User extends Component {
   // }
 
 
+
 getData = event => {
     API.getUser("laracroft@tombraider.com")
       .then(res => this.setState({ user: res.data }))
@@ -36,6 +46,25 @@ getData = event => {
   
   render() {
     return (
+
+      <div>
+
+        <Nav>
+        
+        </Nav>
+
+        <ProfileHeader
+          userName={this.state.userName}
+          /*profileName={this.state.profileImage}*/
+          profileImage={this.state.profileImage}
+          bio={this.state.bio}
+          >
+        </ProfileHeader>
+
+      </div>
+
+    /* og user.js html 
+
       <Container fluid>
         <div>
             <h2>{this.state.user.firstName}</h2>
@@ -51,6 +80,9 @@ getData = event => {
 
         </div>
       </Container>
+
+    og user.js html */
+
     );
   }
 }

@@ -5,6 +5,7 @@ import User from "./pages/User";
 import Home from "./pages/Home";
 import Categories from "./pages/Categories";
 import Profile from "./pages/Profile";
+import CategoryLayout from "./components/CategoryLayout";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 

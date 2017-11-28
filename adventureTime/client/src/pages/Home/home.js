@@ -85,6 +85,7 @@ class Home extends Component {
 		This will be a post route to send the user information to the database. 
 	*/
 	handleCreateSubmit = () => {
+
 		/*
 			Verify user information:
 			- Passwords must match.
@@ -121,6 +122,7 @@ class Home extends Component {
 					const tempPassword = this.state.password;
 					const tempAbout = this.state.about;
 					const tempAdventureLevel = this.state.adventureLevel;
+
 
 			  	//send a call to the cloudinary API to post a new user picture to the cloud database.
 					axios({
