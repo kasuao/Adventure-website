@@ -4,27 +4,29 @@ import "./HomeHeader.css";
 //Create the Header of our homepage as a component.
 const HomeHeader = props =>
   <div className="homeHeader">
-    <h1 id="siteTitle">ADVENTURE AWAITS</h1>
-    <form className="col s12">
-    	<div className="row">
-			<div id="loginEmail" className="input-field col s3">
-			  <label>
-			    email:
-			    <input type="email" name="email" />
-			  </label>
-			</div>
-			<div id="loginPassword" className="input-field col s3">
-			  <label>
-			    password:
-			    <input type="password" name="password" />
-			  </label>
-			</div>
+	  <div class="left-header-col">
+	    <h1 id="siteTitle">ADVENTURE AWAITS</h1>
+	  </div>
+	  <div class="right-header-col">
+	    <form className="col s12">
+	    	<div>
+					<div id="loginEmail" className="input-field col s3">
+					  <label for="login-email"> email:</label>
+					    <input type="email" name="email" />
+					</div>
+					<div id="loginPassword" className="input-field col s3">
+					  <label for="password-login">password:</label>
+					  <input type="password" name="password" id="password-login" />
+					</div>
+				</div>
+				<div class="bottom-header">
+					<p onClick={props.handleUserCreate} id="create">Create an Account</p>
+				</div>
+				<div class="submit-button">
+				<input id="loginSubmit" type="submit" value="Login" />
+				</div>
+			</form>
 		</div>
-		<div>
-			<p onClick={props.handleUserCreate} id="create">Create an Account</p>
-		</div>
-		<input id="loginSubmit" type="submit" value="Login" />
-	</form>
 	
   </div>;
 

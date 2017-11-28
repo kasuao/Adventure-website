@@ -8,8 +8,29 @@
 
 #aboutMe {
 	text-align: center;
+	border: black double 5px;
+	margin-bottom: 50px;
 }
 
 .progress {
 	background-color: #f5f5f5;
+}
+
+#rating{
+		border: black double 5px;
+
+}
+
+.thumbnail {
+		border: black double 5px;
+}
+
+#profilePic {
+	margin-left: 60px;
+	margin-bottom: 60px;
+}
+#blogging{
+border-top: black solid 8px;
+width: 100%;
+
 }

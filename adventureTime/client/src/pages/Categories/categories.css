@@ -1,6 +1,6 @@
 .hiking {
 	color:black;
-	font:;
+	font-family: 'Vibur', cursive;
 	border:black double 3px;
 	height:400px;
 	margin-bottom: 2px;
@@ -12,6 +12,7 @@
 	border:black double 3px;
 	height:300px;
 	margin-bottom: 2px;
+	font-family: 'Vibur', cursive;
 }
 
 .fishing {
@@ -20,8 +21,10 @@
 	padding-top: 10px;
 	height:300px;
 	margin-bottom: 2px;
+	font-family: 'Vibur', cursive;
 }
 
 .Footer {
 	margin-top: 20px;
 }
+

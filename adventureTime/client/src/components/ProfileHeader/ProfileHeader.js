@@ -21,7 +21,7 @@ const ProfileHeader = props =>
 
           {/* need to get profile image working */}
           {/*<img class="thumbnail" src="http://placehold.it/500x300" />*/}
-          <img class="thumbnail" src={props.profileImage}/>
+          <img id="profilePic"class="thumbnail" src={props.profileImage}/>
 
     		<div id="aboutMe">
         			<h3>About Me</h3>
@@ -37,7 +37,7 @@ const ProfileHeader = props =>
       {/* col medium 8 ending div */}
       </div>
 
-      <div class="col-md-4">
+      <div id="rating"class="col-md-4">
 
         <div class="medium-3 columns" data-sticky-container>
         <div class="sticky" data-sticky data-anchor="content">
@@ -96,21 +96,21 @@ const ProfileHeader = props =>
  {/* row ending div */}
  </div>
 
-        <div class="blog-post">
+        <div id="blogging" class="blog-post">
           <h3>Awesome blog post title <small>3/6/2015</small></h3>
-          <img class="thumbnail" src="http://placehold.it/850x350" />
+          <img class="thumbnail" src="Images/fishing.jpeg" />
           <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus.</p>
         </div>
 
         <div class="blog-post">
           <h3>Awesome blog post title <small>3/6/2015</small></h3>
-          <img class="thumbnail" src="http://placehold.it/850x350" />
+          <img class="thumbnail" src="Images/lakeBlanche.jpeg" />
           <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus.</p>
         </div>
 
         <div class="blog-post">
           <h3>Awesome blog post title <small>3/6/2015</small></h3>
-          <img class="thumbnail" src="http://placehold.it/850x350" />
+          <img class="thumbnail" src="Images/mountainbiking.jpeg" />
           <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus.</p>
         </div>
 
