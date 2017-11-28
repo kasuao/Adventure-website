@@ -24,7 +24,7 @@ class Categories extends Component {
 
 
 
-			<CategoryLayout age="50" tagline="I Love Adventure"
+			<CategoryLayout age="50" tagline=""
 		
 			/>
 	

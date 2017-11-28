@@ -23,6 +23,7 @@ const HomeHeader = props =>
 			<p onClick={props.handleUserCreate} id="create">Create an Account</p>
 		</div>
 		<button id="loginSubmit" value="Login" onClick={props.handleUserLogin}>Login</button>
+
   </div>;
 
 export default HomeHeader;
