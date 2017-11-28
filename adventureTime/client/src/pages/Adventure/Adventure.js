@@ -16,14 +16,15 @@ class Adventure extends Component {
 // this function pushes data to the server. 
   popData = test =>{
     API.saveAdventure({
-    "user": "TST", //TODO I don't know if this is right...do I set the value as an object?
+      // The username field is supposed to grab the session storage field.
+    "username": sessionStorage.getItem('userName'),
     "title": "Some Tomb somwhere",
     "description": "Had to climb, swim, swing, and kill some bad guys.",
     "directions": "I don't know I was blindfolded",
     "location": "In the jungle",
     "category": "Hiking",
     "funRating": 5,
-    "diffRating": 3})
+    "diffRating": 10})
   }
 
 getData = event => {

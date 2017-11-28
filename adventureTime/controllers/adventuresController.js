@@ -31,7 +31,8 @@ module.exports = {
       /*TODO: change the .'then' to findOneandUpdate user(needs ID) to 
       included the newly created adventure.*/
       .then(function(dbModel){
-        return db.user.findOneAndUpdate({}, {$push: {adventures: dbModel._id}}, { new: true });
+        // Below userName is the field from the session storage to identify the user
+        return db.user.findOneAndUpdate({userName: req.params.username}, {$push: {adventures: dbModel.username}}, { new: true });
       })
       .then(function(dbUser){
         res.json(dbUser);

@@ -24,8 +24,8 @@ const userSchema = new Schema({
   },
   profilePic: { type: String, required: false },
   about: { type: String, required: true },
-  adventureLevel: { type: Number, required: true }
-  /* TODO: how do I add an adventures property here that
+  adventureLevel: { type: Number, required: true },
+  /* TODO: how do I add an adventures property here that pulls data from the adventure collection?
   ****see 19-Populate-Exercise in week 18*/
   // this code will break the app until the whole function is complete
   adventures: [
