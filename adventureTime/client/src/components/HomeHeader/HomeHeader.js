@@ -4,10 +4,10 @@ import "./HomeHeader.css";
 //Create the Header of our homepage as a component.
 const HomeHeader = props =>
   <div className="homeHeader">
-	  <div class="left-header-col">
+	  <div className="left-header-col">
 	    <h1 id="siteTitle">ADVENTURE AWAITS</h1>
 	  </div>
-	  <div class="right-header-col">
+	  <div className="right-header-col">
 	    <form className="col s12">
 	    	<div>
 					<div id="loginEmail" className="input-field col s3">
@@ -19,10 +19,10 @@ const HomeHeader = props =>
 					  <input type="password" name="password" id="password-login" />
 					</div>
 				</div>
-				<div class="bottom-header">
+				<div className="bottom-header">
 					<p onClick={props.handleUserCreate} id="create">Create an Account</p>
 				</div>
-				<div class="submit-button">
+				<div className="submit-button">
 				<input id="loginSubmit" type="submit" value="Login" />
 				</div>
 			</form>
