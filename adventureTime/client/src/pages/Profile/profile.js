@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import HomeHeader from "../../components/HomeHeader";
 import ProfileHeader from "../../components/ProfileHeader";
-
 import CreateUserModal from "../../components/CreateUserModal";
 import "./profile.css";
 
@@ -61,7 +60,7 @@ class Profile extends Component {
 	render() {
 		return (
 			<div>
-
+				<div>Logged In: {sessionStorage.getItem('loggedIn')}</div>
 				<ProfileHeader></ProfileHeader>
 
 

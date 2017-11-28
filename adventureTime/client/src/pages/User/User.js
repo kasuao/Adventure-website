@@ -38,6 +38,7 @@ class User extends Component {
     // this.popData();
   }
 
+
 // Come back here. This is what makes the modal come alive
 
 /*
@@ -150,6 +151,7 @@ the new post modal will not pop up (close the window).
       })
       .then(res => console.log(res))
     }
+
 
 
 getData = event => {
