@@ -23,17 +23,18 @@ class User extends Component {
   }
 
   // this function pushes data to the server. 
-  popData = test =>{
-    API.saveUser({
-    "firstName" : "Lara",
-    "lastName" : "Croft",
-    "email" : "laracroft@tombraider.com",
-    "password" : "password",
-    "about" : "she is a woman who travels the world in search of forgotten artifacts and locations, frequently connected to supernatural powers.She is the only daughter and heir of the aristocratic Croft family. She is intelligent, athletic, elegant, fluent in multiple languages, and determined to fulfill her own goals at any cost. She has brown eyes and brown hair mostly worn in a braid or ponytail. ",
-    "adventureLevel" : 10
-    })
-    .then(res => console.log(res))
-  }
+  // popData = test =>{
+  //   API.saveUser({
+  //   "firstName" : "Lara",
+  //   "lastName" : "Croft",
+  //   "email" : "laracroft@tombraider.com",
+  //   "password" : "password",
+  //   "about" : "she is a woman who travels the world in search of forgotten artifacts and locations, frequently connected to supernatural powers.She is the only daughter and heir of the aristocratic Croft family. She is intelligent, athletic, elegant, fluent in multiple languages, and determined to fulfill her own goals at any cost. She has brown eyes and brown hair mostly worn in a braid or ponytail. ",
+  //   "adventureLevel" : 10
+  //   })
+  //   .then(res => console.log(res))
+  // }
+
 
 
 getData = event => {

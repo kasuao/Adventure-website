@@ -9,9 +9,17 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
-    db.Adventure
-      .findById(req.params.id)
+  // findById: function(req, res) {
+  //   db.Adventure
+  //     .findById(req.params.id)
+  //     .then(dbModel => res.json(dbModel))
+  //     .catch(err => res.status(422).json(err));
+  // },
+    /* this function allows a page to display adventures by category. It
+  chooses that adventure by their category name*/
+    findOne: function(req, res) {
+    db.User
+      .findOne({category:req.params.category})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -19,7 +27,16 @@ module.exports = {
     db.Adventure
     // req.body is form data
       .create(req.body)
-      .then(dbModel => res.json(dbModel))
+      // PUSH new adventure to user.adventures
+      /*TODO: change the .'then' to findOneandUpdate user(needs ID) to 
+      included the newly created adventure.*/
+      .then(function(dbModel){
+        // Below userName is the field from the session storage to identify the user
+        return db.user.findOneAndUpdate({userName: req.params.username}, {$push: {adventures: dbModel.username}}, { new: true });
+      })
+      .then(function(dbUser){
+        res.json(dbUser);
+      })
       .catch(err => res.status(422).json(err));
   },
   update: function(req, res) {
