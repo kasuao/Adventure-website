@@ -9,7 +9,7 @@ import CreateUserModal from "../../components/CreateUserModal";
 import "./home.css";
 
 class Home extends Component {
-//declare and store state variables
+//declare and store state variables, organize to use global state
 	state = {
 		createUser: 0,
 		pictureToUpload: {name:"Upload Image"},
@@ -17,19 +17,15 @@ class Home extends Component {
 		cloudinary_url: "https://api.cloudinary.com/v1_1/copilot28/upload",
 
 		//store the information being sent to the database here.
-		firstName: "test",
+		firstName: "",
 		lastName: "",
 		userName: "",
 		email: "",
 		password: "",
+		password2: "",
 		profilePic: "",
 		about: "",
 		adventureLevel: ""
-	};
-
-	constructor(props){
-		super(props)
-		this.handleUserCreate = this.handleUserCreate.bind(this);
 	};
 
 	/*this function will run when the "Create an Account" text is clicked by the user.
@@ -53,9 +49,10 @@ class Home extends Component {
 	};
 	
 	//declare cloudinary information
-	//const imgPreview = document.getElementById('img-preview');
-	//const fileUpload = document.getElementById('file-upload');
-
+	/*
+		This funtion will set the file information that the user wants to upload to state variables
+		for use when the user selects the submit button.
+	*/
 	uploadPic = (event) => {
 		const file = event.target.files[0];
 		const formData = new FormData();
@@ -68,25 +65,6 @@ class Home extends Component {
       uploadPictureData: formData
     })
 
-	};
-
-	/*
-		This function pushes data to the server when the create user submit button is pressed.
-		Prior to submitting to the database, the information being submitted will be verified to ensure it is okay to push.
-	*/
-  popData = () =>{
-  	console.log("hits popData")
-    API.saveUser({
-    "firstName" : this.state.firstName,
-    "lastName" : this.state.firstName,
-    "userName" : this.state.userName,
-    "email" : this.state.firstName,
-    "password" : this.state.firstName,
-    "profilePic": this.state.profilePic,
-    "about" : this.state.firstName,
-    "adventureLevel" : this.state.profilePic
-  })
-  .then(res => console.log(res))
 	};
 
 	/*
@@ -108,48 +86,133 @@ class Home extends Component {
 	*/
 	handleCreateSubmit = () => {
 
-		//set temporary variables to the current state variables to be used inside the function scope.
-		const tempFirst = this.state.firstName;
-		const tempLast = this.state.lastName;
-		const tempUserName = this.state.userName;
-		const tempEmail = this.state.email;
-		const tempPassword = this.state.password;
-		const tempAbout = this.state.about;
-		const tempAdventureLevel = this.state.adventureLevel;
-    
-  	//send a call to the cloudinary API to post a new user picture.
-		axios({
-			url: this.state.cloudinary_url,
-			method: "post",
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			data: this.state.uploadPictureData
-			}).then(function(res){
-				console.log(res);
-				//after the axios call has been made, send our data to the database.
-				API.saveUser({
-			    "firstName" : tempFirst,
-			    "lastName" : tempLast,
-			    "userName" : tempUserName,
-			    "email" : tempEmail,
-			    "password" : tempPassword,
-			    "profilePic": res.data.secure_url,
-			    "about" : tempAbout,
-			    "adventureLevel" : tempAdventureLevel
-			  })
-				alert("submitted");
-			}).catch(function(err){
-				console.log(err);
-				alert("error");
-			});
+		/*
+			Verify user information:
+			- Passwords must match.
+			- *possible: passwords must contain a uppercase, lowercase, special character, and number.
+			- The userName cannot match another users.
+			- The email address cannot match another users.
+		*/
+		let verifyMsg = "";
+		API.getUsers()
+      .then(res => {
+      	//verify that we have a unique user
+      	for (var i = 0; i < res.data.length; i++) {
+      		if(res.data[i].userName === this.state.userName){
+      			verifyMsg = `${verifyMsg} The selected Username is already in use. `;
+      			console.log("duplicate username at " + i);
+      		};
+      		if(res.data[i].email === this.state.email){
+      			verifyMsg = `${verifyMsg} The entered Email is already in use. `;
+      			console.log("duplicate email at " + i);
+      		};
+      	}
+      	if(this.state.password !== this.state.password2){
+					verifyMsg = verifyMsg + "The passwords do not match.";
+				};
+				//Only move forward if the verification process passes. 
+				if(verifyMsg !== ""){
+					alert(verifyMsg);
+				}else{
+					//set temporary variables to the current state variables to be used inside the axios function scope.
+					const tempFirst = this.state.firstName;
+					const tempLast = this.state.lastName;
+					const tempUserName = this.state.userName;
+					const tempEmail = this.state.email;
+					const tempPassword = this.state.password;
+					const tempAbout = this.state.about;
+					const tempAdventureLevel = this.state.adventureLevel;
+
+
+			  	//send a call to the cloudinary API to post a new user picture to the cloud database.
+					axios({
+						url: this.state.cloudinary_url,
+						method: "post",
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded'
+						},
+						data: this.state.uploadPictureData
+					}).then(function(res){
+						console.log(res);
+
+						//set up session variables to save the unique username to be used throughout the application.
+						//We are using javascript to set session variables. Ideally this would be done with Redux, but due to time constraints this is the route we decided to use.
+						sessionStorage.setItem('userName', tempUserName);
+						sessionStorage.setItem('loggedIn', "true");
+
+						//after the axios call has been made, send our data to the database.
+						API.saveUser({
+					    "firstName" : tempFirst,
+					    "lastName" : tempLast,
+					    "userName" : tempUserName,
+					    "email" : tempEmail,
+					    "password" : tempPassword,
+					    "profilePic": res.data.secure_url,
+					    "about" : tempAbout,
+					    "adventureLevel" : tempAdventureLevel
+					  })
+
+						alert("submitted");
+					}).catch(function(err){
+						console.log(err);
+						alert("error");
+						sessionStorage.setItem('userName', "");
+						sessionStorage.setItem('loggedIn', "false");
+					});
+				};
+      })
+      .catch(function(err)  {
+      	sessionStorage.setItem('userName', "");
+				sessionStorage.setItem('loggedIn', "false");
+      	console.log(err);
+    	});
 
 	};
 
+	/*
+		This function will determine what happens when the Login button is clicked This will verify that something is entered 
+		into the email and password fields and check the database to verify the information matches a unique user in our system.
+		If the information is correct, update the global state variables with the user information to be used on other pages.
+	*/
+	handleUserLogin = () => {
+		API.getUser(document.getElementById("inputEmail").value)
+		.then(function(res) {
+			console.log(res);
+			if(res.data){
+				if(res.data.email === document.getElementById("inputEmail").value && res.data.password === document.getElementById("inputPassword").value){
+						//set up session variables to save the unique username to be used throughout the application.
+						//We are using javascript to set session variables. Ideally this would be done with Redux, but due to time constraints this is the route we decided to use.
+						sessionStorage.setItem('userName', res.data.userName);
+						sessionStorage.setItem('loggedIn', "true");
+				}else{
+					sessionStorage.setItem('userName', "");
+					sessionStorage.setItem('loggedIn', "false");
+					alert("Invalid email or password.");
+				}
+			}else {
+				sessionStorage.setItem('userName', "");
+				sessionStorage.setItem('loggedIn', "false");
+				alert("Invalid email or password.");
+			}
+		})
+		.catch(function(err){
+			sessionStorage.setItem('userName', "");
+			sessionStorage.setItem('loggedIn', "false");
+			alert("Invalid email or password catch.");
+		});
+    if(sessionStorage.getItem('loggedIn') == "true"){
+    	window.location.href = '/profile';
+    }
+	};
+
+	//always set our logged in state variables to our session variable
 	render() {
 		return (
 			<div>
-				<HomeHeader handleUserCreate={this.handleUserCreate}>
+				<HomeHeader 
+					handleUserCreate={this.handleUserCreate} 
+					handleUserLogin={this.handleUserLogin.bind(this)}
+					changeGlobalState={this.props.changeGlobalState}>
 				</HomeHeader>
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
 				style={{position:'absolute', top:'150px'}}/>
