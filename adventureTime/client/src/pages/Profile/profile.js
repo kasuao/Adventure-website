@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
 import HomeHeader from "../../components/HomeHeader";
 import ProfileHeader from "../../components/ProfileHeader";
-import {gs} from "../../components/GlobalState";
 import CreateUserModal from "../../components/CreateUserModal";
 import "./profile.css";
 

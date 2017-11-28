@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import {gs} from "../../components/GlobalState";
 //import the used components
 import Footer from "../../components/Footer";
 import HomeHeader from "../../components/HomeHeader";
@@ -26,9 +25,7 @@ class Home extends Component {
 		password2: "",
 		profilePic: "",
 		about: "",
-		adventureLevel: "",
-		userLoggedIn: "false",
-		currentUsername: ""
+		adventureLevel: ""
 	};
 
 	/*this function will run when the "Create an Account" text is clicked by the user.
@@ -202,7 +199,7 @@ class Home extends Component {
 			alert("Invalid email or password catch.");
 		});
     if(sessionStorage.getItem('loggedIn') == "true"){
-    	window.location.href = '/user';
+    	window.location.href = '/profile';
     }
 	};
 
@@ -210,7 +207,6 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<div>Username: {this.state.currentUsername}</div>
 				<HomeHeader 
 					handleUserCreate={this.handleUserCreate} 
 					handleUserLogin={this.handleUserLogin.bind(this)}
