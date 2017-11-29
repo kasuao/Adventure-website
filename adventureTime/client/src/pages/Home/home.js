@@ -121,7 +121,7 @@ class Home extends Component {
 					const tempEmail = this.state.email;
 					const tempPassword = this.state.password;
 					const tempAbout = this.state.about;
-					const tempAdventureLevel = this.state.adventureLevel;
+					const tempAdventureLevel = this.state.adventureLevel * 10;
 
 
 			  	//send a call to the cloudinary API to post a new user picture to the cloud database.
@@ -135,10 +135,8 @@ class Home extends Component {
 					}).then(function(res){
 						console.log(res);
 
-						//set up session variables to save the unique username to be used throughout the application.
+						//set up session variables to save the unique username and information to be used throughout the application.
 						//We are using javascript to set session variables. Ideally this would be done with Redux, but due to time constraints this is the route we decided to use.
-						sessionStorage.setItem('userName', tempUserName);
-						sessionStorage.setItem('loggedIn', "true");
 
 						//after the axios call has been made, send our data to the database.
 						API.saveUser({
@@ -151,7 +149,16 @@ class Home extends Component {
 					    "about" : tempAbout,
 					    "adventureLevel" : tempAdventureLevel
 					  })
-
+					  //set session variables to store user information throughout the session. should be replaced with Redux in future iterations. 
+						sessionStorage.setItem('userName', tempUserName);
+						sessionStorage.setItem('loggedIn', "true");
+						sessionStorage.setItem('firstName', tempFirst);
+						sessionStorage.setItem('lastName', tempLast);
+						sessionStorage.setItem('email', tempEmail);
+						sessionStorage.setItem('profilePic', res.data.secure_url);
+						sessionStorage.setItem('about', tempAbout);
+						sessionStorage.setItem('adventureLevel', tempAdventureLevel);
+						sessionStorage.setItem('viewOtherUser', 0);
 						alert("submitted");
 					}).catch(function(err){
 						console.log(err);
@@ -166,6 +173,12 @@ class Home extends Component {
 				sessionStorage.setItem('loggedIn', "false");
       	console.log(err);
     	});
+    	//set a timout function to ensure the program has finished before moving forward to the next page.
+    	setTimeout(function(){
+		    if(sessionStorage.getItem('loggedIn') == "true"){
+		    	//window.location.href = '/user';
+		    }
+			}, 1000);
 
 	};
 
@@ -180,30 +193,40 @@ class Home extends Component {
 			console.log(res);
 			if(res.data){
 				if(res.data.email === document.getElementById("inputEmail").value && res.data.password === document.getElementById("inputPassword").value){
-						//set up session variables to save the unique username to be used throughout the application.
+						//set up session variables to save the unique username and user information to be used throughout the application.
 						//We are using javascript to set session variables. Ideally this would be done with Redux, but due to time constraints this is the route we decided to use.
 						sessionStorage.setItem('userName', res.data.userName);
 						sessionStorage.setItem('loggedIn', "true");
+						sessionStorage.setItem('firstName', res.data.firstName);
+						sessionStorage.setItem('lastName', res.data.lastName);
+						sessionStorage.setItem('email', res.data.email);
+						sessionStorage.setItem('profilePic', res.data.profilePic);
+						sessionStorage.setItem('about', res.data.about);
+						sessionStorage.setItem('adventureLevel', res.data.adventureLevel);
+
 				}else{
-					sessionStorage.setItem('userName', "");
+					sessionStorage.setItem('email', "");
 					sessionStorage.setItem('loggedIn', "false");
 					alert("Invalid email or password.");
 				}
 			}else {
-				sessionStorage.setItem('userName', "");
+				sessionStorage.setItem('email', "");
 				sessionStorage.setItem('loggedIn', "false");
 				alert("Invalid email or password.");
 			}
 		})
 		.catch(function(err){
-			sessionStorage.setItem('userName', "");
+			sessionStorage.setItem('email', "");
 			sessionStorage.setItem('loggedIn', "false");
 			alert("Invalid email or password catch.");
 		});
-    if(sessionStorage.getItem('loggedIn') == "true"){
-    	window.location.href = '/profile';
-    }
+		setTimeout(function(){
+	    if(sessionStorage.getItem('loggedIn') == "true"){
+	    	window.location.href = '/user';
+	    }
+		}, 1000);
 	};
+
 
 	//always set our logged in state variables to our session variable
 	render() {

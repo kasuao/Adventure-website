@@ -24,20 +24,74 @@ class User extends Component {
     landscapeLevel: "",
     funLevel: "",
     adventurePic: "",
+    description: "",
 
-    // Temp data for template
+    // data to populate the site
     user: {},
     userName: "Jeff Loomis",
+    firstName: "",
+    lastName: "",
+    profilePic: "",
+    about: "",
+    adventureLevel: "",
+    adventures: [
+      {
+      "userName" : "",
+      "adventure" : "",
+      "difficultyLevel" : "",
+      "landscapeLevel" : "",
+      "funLevel" : "",
+      "adventurePic": "",
+      "description" : "",
+      "_id": ""
+      }
+    ],
+
     profileImage: "http://www.quistic.com/wp-content/uploads/2014/11/quistic-Large-Course-Images-500-x-300.jpg",
     bio: "Adventure is all about taking each experience, regardless if you know the outcome or not and facing it head on. It is about seeing the world from a different perspective, even if you’ve seen it a million times before. It is choosing to see the beauty from the ordinary and finding ways on how to do it differently."
 
   };
-
+  /*
+    This function will run whenever the component mounts to the page.
+  */
   componentDidMount(){
     this.getData();
     // this.popData();
   }
 
+  // This function will receive user information from our database based on a unique email.
+  getData = event => {
+    API.getUser(sessionStorage.getItem('email'))
+      .then(res =>{ this.setState({ 
+          userName: res.data.userName,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          profilePic: res.data.profilePic,
+          about: res.data.about,
+          adventureLevel: res.data.adventureLevel
+        })
+      console.log(res);
+      })
+      .catch(err => console.log(err));
+      API.getAdventures()
+      .then(res =>{ 
+        let tempArray = [];
+        for (var i = res.data.length - 1; i >= 0; i--) {
+          if(res.data[i].userName === sessionStorage.getItem('userName')){
+            tempArray.push(res.data[i]);
+          }
+        }
+        this.setState({ 
+          adventures: tempArray
+        })
+
+      console.log(res);
+      console.log(this.state.adventures);
+      console.log(this.state.adventures[0].adventure);
+      })
+      .catch(err => console.log(err));
+
+  };
 
 // Come back here. This is what makes the modal come alive
 
@@ -106,10 +160,12 @@ the new post modal will not pop up (close the window).
   handleCreateSubmit = () => {
 
     //set temporary variables to the current state variables to be used inside the function scope.
+    //this should all be handled by state variables, but due to a time crunch we went with session variables to avoid redux. Future iterations should use Redux however.
+    const tempUserName = sessionStorage.getItem('userName');
     const tempAdventure = this.state.adventure;
-    const tempDifficultyLevel = this.state.difficultyLevel;
-    const tempLandscapeLevel = this.state.landscapeLevel;
-    const tempFunLevel = this.state.funLevel;
+    const tempDifficultyLevel = this.state.difficultyLevel * 10;
+    const tempLandscapeLevel = this.state.landscapeLevel * 10;
+    const tempFunLevel = this.state.funLevel * 10;
     const tempDescription = this.state.description;
 
     //send a call to the cloudinary API to post a new user picture.
@@ -124,6 +180,7 @@ the new post modal will not pop up (close the window).
         console.log(res);
         //after the axios call has been made, send our data to the database.
         API.saveAdventure({
+          "userName" : tempUserName,
           "adventure" : tempAdventure,
           "difficultyLevel" : tempDifficultyLevel,
           "landscapeLevel" : tempLandscapeLevel,
@@ -132,6 +189,7 @@ the new post modal will not pop up (close the window).
           "description" : tempDescription,
         })
         alert("submitted");
+        this.closePostCreate();
       }).catch(function(err){
         console.log(err);
         alert("error");
@@ -139,30 +197,24 @@ the new post modal will not pop up (close the window).
 
   };
 
-    // this function pushes data to the server. 
-    popData = test =>{
-      API.saveUser({
-      "firstName" : "Lara",
-      "lastName" : "Croft",
-      "email" : "laracroft@tombraider.com",
-      "password" : "password",
-      "about" : "she is a woman who travels the world in search of forgotten artifacts and locations, frequently connected to supernatural powers.She is the only daughter and heir of the aristocratic Croft family. She is intelligent, athletic, elegant, fluent in multiple languages, and determined to fulfill her own goals at any cost. She has brown eyes and brown hair mostly worn in a braid or ponytail. ",
-      "adventureLevel" : 10
-      })
-      .then(res => console.log(res))
-    }
-
-
-
-getData = event => {
-    API.getUser("jack@right.com")
-      .then(res =>{ this.setState ({ user: res.data })
-      console.log(res);
-      })
-      .catch(err => console.log(err));
+  handleBlogClick = () => {
+    //alert("clicked");
   };
 
-  // set the fucking state 
+    // // this function pushes data to the server. 
+    // popData = test =>{
+    //   API.saveUser({
+    //   "firstName" : "Lara",
+    //   "lastName" : "Croft",
+    //   "email" : "laracroft@tombraider.com",
+    //   "password" : "password",
+    //   "about" : "she is a woman who travels the world in search of forgotten artifacts and locations, frequently connected to supernatural powers.She is the only daughter and heir of the aristocratic Croft family. She is intelligent, athletic, elegant, fluent in multiple languages, and determined to fulfill her own goals at any cost. She has brown eyes and brown hair mostly worn in a braid or ponytail. ",
+    //   "adventureLevel" : 10
+    //   })
+    //   .then(res => console.log(res))
+    // }
+
+
 
   
   render() {
@@ -174,20 +226,35 @@ getData = event => {
           handlePostCreate={this.handlePostCreate}>
         
         </Nav>
-
+        {/*Create a conditional to determine if the user is viewing their profile or somebody elses*/}
+        {sessionStorage.getItem('viewOtherUser') ?
         <ProfileHeader
           userName={this.state.userName}
           /*profileName={this.state.profileImage}*/
-          profileImage={this.state.profileImage}
-          bio={this.state.bio}
+          profileImage={this.state.profilePic}
+          bio={this.state.about}
+          adventureLevel={this.state.adventureLevel}
+          adventures={this.state.adventures}
+          handleBlogClick={this.handleBlogClick}
           >
         </ProfileHeader>
-
+        :
+        <ProfileHeader
+          userName={this.state.userName}
+          /*profileName={this.state.profileImage}*/
+          profileImage={this.state.profilePic}
+          bio={this.state.about}
+          adventureLevel={this.state.adventureLevel}
+          adventures={this.state.adventures}
+          handleBlogClick={this.handleBlogClick}
+          >
+        </ProfileHeader>
+        }
         {this.state.createPost ? 
           <PostAdvModal 
             handleFormChange={this.handleFormChange}
             handleCreateSubmit={this.handleCreateSubmit} 
-            closeUserCreate={this.adventurePost} 
+            closePostCreate={this.closePostCreate} 
             pictureToUpload={this.state.pictureToUpload.name} 
             uploadPic={this.uploadPic}>
           </PostAdvModal>
