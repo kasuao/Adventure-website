@@ -215,7 +215,12 @@ class Home extends Component {
 					changeGlobalState={this.props.changeGlobalState}>
 				</HomeHeader>
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
-				style={{position:'absolute', top:'150px'}}/>
+				/>
+				<div class="img-container">
+					<img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/>
+					<img width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
+					<img width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
+				</div>
 				<Footer>
 				</Footer>
 				{this.state.createUser ? 
