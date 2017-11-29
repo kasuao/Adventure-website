@@ -2,12 +2,12 @@
 	width:100%;
 	text-align: center;
 	color:purple;
-	position:fixed;
-	bottom:1%;
-	height:50px;
+	bottom:0;
+	height:80px;
 	background-color: #515151;
 	color:#42f4e8;
 	margin-top: 5px;
 	padding:20px;
 	display:block;
+
 }

@@ -37,7 +37,7 @@ const ProfileHeader = props =>
       {/* col medium 8 ending div */}
       </div>
 
-      <div className="col-md-4">
+      <div id="rating"className="col-md-4">
 
         <div className="medium-3 columns" data-sticky-container>
         <div className="sticky" data-sticky data-anchor="content">
@@ -95,7 +95,7 @@ const ProfileHeader = props =>
 
  {/* row ending div */}
  </div>
-       
+       //conflict with master here: <div id="blogging" class="blog-post">
         {props.adventures.map(result =>
           <div className="blog-post">
             <h3 onClick={props.handleBlogClick(result)}>{result.adventure}<small> {result.date}</small></h3>

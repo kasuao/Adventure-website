@@ -59,7 +59,7 @@ const CategoryLayout = props =>
 					  the release of Letraset sheets containing Lorem Ipsum 
 					  passages, and more recently with desktop publishing software 
 					  like Aldus PageMaker including versions of Lorem Ipsum.
-    <img class="thumbnail" src="http://placehold.it/200x150" />
+    <img class="thumbnail" src="Images/alaskatrail.jpeg" />
   </div>
 
 </div>
@@ -83,7 +83,7 @@ const CategoryLayout = props =>
 					  the release of Letraset sheets containing Lorem Ipsum 
 					  passages, and more recently with desktop publishing software 
 					  like Aldus PageMaker including versions of Lorem Ipsum.
-    <img class="thumbnail" src="http://placehold.it/200x150" />
+    <img class="thumbnail" src="Images/lakeBlanche.jpeg" />
   </div>
 
 </div>

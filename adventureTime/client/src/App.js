@@ -16,6 +16,7 @@ using the syntax and format in the Routes already created below.
 
 NOTE: this will not work unless you create a single component hence the <div> tags. Using those
 make all the components within all in one component. */
+
 class App extends Component {
 
   render() {
@@ -26,7 +27,6 @@ class App extends Component {
             <Route exact path="/" component={Home}/>
             <Route exact path="/adventure" component={Adventure} />
             <Route exact path="/categories" component={Categories} />
-
 
             {/*<Route exact path="/user" component={user} />*/}
             <Route exact path="/user" component={User} />
