@@ -9,17 +9,17 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // findById: function(req, res) {
-  //   db.Adventure
-  //     .findById(req.params.id)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
+  findById: function(req, res) {
+    db.Adventure
+      .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
     /* this function allows a page to display adventures by category. It
   chooses that adventure by their category name*/
     findOne: function(req, res) {
     db.User
-      .findOne({category:req.params.category})
+      .findOne({userName:req.params.userName})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
