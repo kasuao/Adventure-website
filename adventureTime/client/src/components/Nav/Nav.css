@@ -1,6 +1,7 @@
 .navbar {
 	background-color: #515151; 
 	border-radius: 0;
+	font-family: 'Bungee Inline', cursive;
 }
 
 .navbar-inverse .navbar-brand {

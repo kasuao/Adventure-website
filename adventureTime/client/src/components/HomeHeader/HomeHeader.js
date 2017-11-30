@@ -20,16 +20,18 @@ const HomeHeader = props =>
 					  <input type="password" name="password" id="password-login" />
 					</div>
 				</div>
-				<div className="bottom-header">
+				
+				
+			
+			
+			</form>
+		</div>
+		<div className="bottom-header">
 					<p onClick={props.handleUserCreate} id="create">Create an Account</p>
 				</div>
 				<div className="submit-button">
-				<input id="loginSubmit" type="submit" value="Login" />
-				</div>
-			</form>
-		</div>
 		<button id="loginSubmit" value="Login" onClick={props.handleUserLogin}>Login</button>
-
+	</div>
   </div>;
 
 export default HomeHeader;
