@@ -145,7 +145,10 @@ class Home extends Component {
 					    "userName" : tempUserName,
 					    "email" : tempEmail,
 					    "password" : tempPassword,
-					    "profilePic": res.data.secure_url,
+					    "profilePic": "https://res.cloudinary.com/copilot28/image/upload/a_exif/" + res.data.public_id + ".jpeg",
+					    // "profilePic": res.data.secure_url,
+
+					    // https://res.cloudinary.com/copilot28/image/upload/a_exif/v1512000198/pr9b3zqdyxfifsiffur6.jpg
 					    "about" : tempAbout,
 					    "adventureLevel" : tempAdventureLevel
 					  })
@@ -159,7 +162,6 @@ class Home extends Component {
 						sessionStorage.setItem('about', tempAbout);
 						sessionStorage.setItem('adventureLevel', tempAdventureLevel);
 						sessionStorage.setItem('viewOtherUser', 0);
-						alert("submitted");
 					}).catch(function(err){
 						console.log(err);
 						alert("error");
@@ -176,7 +178,7 @@ class Home extends Component {
     	//set a timout function to ensure the program has finished before moving forward to the next page.
     	setTimeout(function(){
 		    if(sessionStorage.getItem('loggedIn') == "true"){
-		    	//window.location.href = '/user';
+		    	window.location.href = '/user';
 		    }
 			}, 1000);
 

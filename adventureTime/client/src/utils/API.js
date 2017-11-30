@@ -6,8 +6,8 @@ export default {
     return axios.get("/api/adventures");
   },
   // Gets the adventure with the given id
-  getAdventure: function(userName) {
-    return axios.get("/api/adventures/" + userName);
+  getAdventure: function(id) {
+    return axios.get("/api/adventures/" + id);
   },
   // Deletes the adventure with the given id
   deleteAdventure: function(id) {
