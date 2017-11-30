@@ -2,7 +2,14 @@
 	font-size: 85px;
 	padding-right: 10px;
 }
+.homeHeader {
+	display:flex;
+	align-items: center;
+}
 
+.form-container {
+	width:250px;
+}
 #loginSubmit{
 /*	position:absolute;*/
 /*	top: 110px;
@@ -11,33 +18,25 @@
 	font-family: 'Vibur', cursive;
 	font-size: 20pt;
 	width: 125px;
-	margin-top: -2em;
-	margin-right: 140px;
-	margin-bottom: 20px;
 }
 #loginPassword {
-	/*position:absolute;*/
-/*	right:10px;
-	top:1px;*/
+
 	font-size: 18pt;
 	font-family: 'Vibur', cursive;
-	margin-top: -1em;
+
 }
 #loginEmail {
 	font-family: 'Vibur', cursive;
-	margin-top: -5em;
+
 }
 .left-header-col{
 	font-size: 24pt;
-width:70%;
+	width:70%;
 }
 .right-header-col {
-	display:flex;
-	justify-content: flex-end;
-	flex-wrap: nowrap;
 	color:gray;
-	width: 70%;
-	margin: 0 auto;
+	width: 30%;
+	
 }
 
 .bottom-header {
@@ -50,30 +49,34 @@ width:70%;
 }
 .submit-button{
 	color:black;
-	display:flex;
-	justify-content: flex-end;
 	color:black;
 	width: 90%;
 	margin: 0 auto;
 }
 
+input {
+	font-size: 36pt !important;
+}
+.input-field label {
+	top:0;
+	left:0;
+	font-size: 20pt;
+}
 
 
 @media screen and (max-width: 900px) {
-    #loginSubmit{
-	position:absolute;
-	top: 110px;
-	right:30%;
+    .homeHeader {
+    	flex-direction: column;
+	
+	}
+	.img-container{
+		flex-wrap: wrap;
 	}
 	#loginPassword{
-		position:absolute;
-		right:45%;
-		top:70px;
+	
 	}
 	#loginEmail{
-		position:absolute;
-		right:75%;
-		top:70px;
+	
 	}
 }
 #create{
