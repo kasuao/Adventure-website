@@ -2,16 +2,30 @@
 	color:black;
 	position: absolute;
 	right:25%;
-	border: solid black 2px;
+	border:black solid 7px;
 	background-color: white;
 	top:7%;
 	left:25%;
 	box-shadow: 10px 10px 5px #888888;
 	border-radius: 10px;
 	margin-bottom: 50px;
+	font-family:'Rancho', cursive;
+	font-size: 24pt;
 }
 #closeWindow{
 	cursor: pointer;
 	width:15px;
 	margin-left: 47%;
 }
+
+#newAdventure {
+	color:pink;
+}
+
+.form-control {
+	color:green;
+}
+
+/*font-family: 'Pacifico', cursive;
+font-family: 'Rancho', cursive;
+font-family: 'Allan', cursive;*/

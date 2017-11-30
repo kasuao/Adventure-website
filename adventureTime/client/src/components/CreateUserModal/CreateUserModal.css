@@ -2,13 +2,16 @@
 	color:black;
 	position: absolute;
 	right:25%;
-	border: solid black 2px;
+	border: solid black 5px;
 	background-color: white;
 	top:7%;
 	left:25%;
 	box-shadow: 10px 10px 5px #888888;
 	border-radius: 10px;
 	margin-bottom: 50px;
+	font-size: 18pt;
+	font-family:'Rancho', cursive;
+	font-weight: bolder;
 }
 #closeWindow{
 	cursor: pointer;
@@ -16,6 +19,6 @@
 	margin-left: 47%;
 }
 
-#createUser {
-	font-family: 'Vibur', cursive;
+#newFname {
+	font-size: 12pt;
 }
