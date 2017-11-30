@@ -17,12 +17,12 @@ app.use(routes);
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI,
+  process.env.MONGODB_URI || "mongodb://localhost/adventureTime",
   {
     useMongoClient: true
   }
 );
-console.log(process.env.MONGODB_URI);
+console.log(process.env.MONGODB_URI)
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
