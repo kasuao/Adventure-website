@@ -6,6 +6,10 @@ export default {
     return axios.get("/api/adventures");
   },
   // Gets the adventure with the given id
+  getAdventure: function(id) {
+    return axios.get("/api/adventures/" + id);
+  },
+  // get adventure by userName
   getAdventure: function(userName) {
     return axios.get("/api/adventures/" + userName);
   },

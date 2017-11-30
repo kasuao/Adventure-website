@@ -6,53 +6,34 @@ import { Col, Row, Container } from "../../components/Grid";
 
 class Adventure extends Component {
   state = {
-    adventures: [],
+    adventure: {},
   };
 
-  componentDidMount(){
+  componentDidMount() {
     this.getData();
-    this.popData();
-  }
-// this function pushes data to the server. 
-  popData = test =>{
-    API.saveAdventure({
-      // The username field is supposed to grab the session storage field.
-    "username": sessionStorage.getItem('userName'),
-    "title": "Some Tomb somwhere",
-    "description": "Had to climb, swim, swing, and kill some bad guys.",
-    "directions": "I don't know I was blindfolded",
-    "location": "In the jungle",
-    "category": "Hiking",
-    "funRating": 5,
-    "diffRating": 10})
   }
 
-getData = event => {
-    API.getAdventures()
-      .then(res => this.setState({ adventures: res.data }))
+  getData = event => {
+    API.getAdventure(FIX-ME-id)
+      .then(res => this.setState({ adventure: res.data }))
       .catch(err => console.log(err));
   };
-
   
   render() {
     return (
       <Container fluid>
-        {this.state.adventures.map(adventure => (
         <div>
-            <h1>{adventure.category}</h1>
-            <h1>{adventure.title}</h1>
-            <h2>Description: </h2>
-            <p>{adventure.description}</p>
-            <h2>Directions: </h2>
-            <p>{adventure.directions}</p>
-            <h2>Location: </h2>
-            <p>{adventure.location}</p>
-            <h2>Description: </h2>
-            <p>{adventure.description}</p>
-            <h4>Fun Rating: {adventure.funRating}</h4>
-            <h4>Difficulty Rating: {adventure.diffRating}</h4>
+          <h1>{this.state.adventure.category}</h1>
+          <h1>{this.state.adventure.title}</h1>
+          <h2>Description: </h2>
+          <p>{this.state.adventure.description}</p>
+          <h2>Directions: </h2>
+          <p>{this.state.adventure.directions}</p>
+          <h2>Location: </h2>
+          <p>{this.state.adventure.location}</p>
+          <h4>Fun Rating: {this.state.adventure.funRating}</h4>
+          <h4>Difficulty Rating: {this.state.adventure.diffRating}</h4>
         </div>
-        ))} 
       </Container>
     );
   }

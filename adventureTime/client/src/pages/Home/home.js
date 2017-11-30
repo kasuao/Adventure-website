@@ -240,7 +240,7 @@ class Home extends Component {
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
 				/>
 				<div class="img-container">
-					<img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/>
+					<Link to={"../Adventure/"}><img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/></Link>
 					<img width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
 					<img width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
 				</div>

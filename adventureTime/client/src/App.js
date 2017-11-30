@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Adventure from "./pages/Adventure";
+import Adventures from "./pages/Adventure/Adventures";
 import User from "./pages/User";
 import Home from "./pages/Home";
 import Categories from "./pages/Categories";
@@ -18,7 +18,7 @@ NOTE: this will not work unless you create a single component hence the <div> ta
 make all the components within all in one component. */
 
 class App extends Component {
-
+/*TODO: routes need components*/ 
   render() {
     return(
       <Router>
@@ -26,7 +26,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route exact path="/home" component={Home}/>
-            <Route exact path="/adventure" component={Adventure} />
+            <Route exact path="/adventures" component={Adventures} />
             <Route exact path="/categories" component={Categories} />
 
             {/*<Route exact path="/user" component={user} />*/}
