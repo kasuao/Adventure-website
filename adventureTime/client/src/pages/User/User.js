@@ -185,14 +185,14 @@ the new post modal will not pop up (close the window).
           "difficultyLevel" : tempDifficultyLevel,
           "landscapeLevel" : tempLandscapeLevel,
           "funLevel" : tempFunLevel,
-          "adventurePic": res.data.secure_url,
+          "adventurePic": "https://res.cloudinary.com/copilot28/image/upload/a_exif/" + res.data.public_id + ".jpeg",
           "description" : tempDescription,
         })
-        alert("submitted");
+        console.log("submitted");
         this.closePostCreate();
       }).catch(function(err){
+        console.log("Error:");
         console.log(err);
-        alert("error");
       });
 
   };
