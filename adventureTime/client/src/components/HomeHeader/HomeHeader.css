@@ -1,50 +1,62 @@
 #siteTitle{
-	font-size: 70px;
+	font-size: 85px;
 	padding-right: 10px;
 }
 
 #loginSubmit{
 /*	position:absolute;*/
-	top: 110px;
-	right:10%;
-	border:black solid 2px;
+/*	top: 110px;
+	right:10%;*/
+	border:black double 5px;
 	font-family: 'Vibur', cursive;
 	font-size: 20pt;
 	width: 125px;
+	margin-top: -2em;
+	margin-right: 140px;
+	margin-bottom: 20px;
 }
-#loginPassword{
+#loginPassword {
 	/*position:absolute;*/
 /*	right:10px;
 	top:1px;*/
-	font-size: 14pt;
+	font-size: 18pt;
 	font-family: 'Vibur', cursive;
+	margin-top: -1em;
 }
-#loginEmail{
-
+#loginEmail {
 	font-family: 'Vibur', cursive;
+	margin-top: -5em;
 }
 .left-header-col{
-
+	font-size: 24pt;
+width:70%;
 }
 .right-header-col {
 	display:flex;
-	align-items:flex-start;
-	justify-content: left;
-	flex-direction: row;
-	color:pink;
+	justify-content: flex-end;
+	flex-wrap: nowrap;
+	color:gray;
+	width: 70%;
+	margin: 0 auto;
 }
 
 .bottom-header {
-	color: blue;
+	color: black;
 	display: flex;
-	justify-content: space-around;
-	
+	justify-content:flex-start;
+	width:100%;
+	margin: 0 auto;
 
 }
 .submit-button{
 	color:black;
-	justify-content: center;
+	display:flex;
+	justify-content: flex-end;
+	color:black;
+	width: 90%;
+	margin: 0 auto;
 }
+
 
 
 @media screen and (max-width: 900px) {

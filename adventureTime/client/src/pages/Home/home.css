@@ -12,7 +12,14 @@
 	margin:0 auto;
 }
 .img-container img {
-	margin:25px;
+	margin:100px;
 	border:black solid 5px;
 	padding:3px;
 }
+
+	.input-field {
+		font-size: 20pt;
+		flex-direction:column;
+		flex-flow: top;
+	/*	margin-top: -4em;*/
+	}
