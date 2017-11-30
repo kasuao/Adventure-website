@@ -76,7 +76,7 @@ class User extends Component {
       API.getAdventures()
       .then(res =>{ 
         let tempArray = [];
-        for (var i = res.data.length - 1; i >= 0; i--) {
+        for (var i = 0; i < res.data.length; i++) {
           if(res.data[i].userName === sessionStorage.getItem('userName')){
             tempArray.push(res.data[i]);
           }
