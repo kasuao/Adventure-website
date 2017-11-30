@@ -95,7 +95,7 @@ const ProfileHeader = props =>
 
  {/* row ending div */}
  </div>
-       //conflict with master here: <div id="blogging" class="blog-post">
+       {/*conflict with master here: <div id="blogging" class="blog-post">*/}
         {props.adventures.map(result =>
           <div className="blog-post">
             <h3 onClick={props.handleBlogClick(result)}>{result.adventure}<small> {result.date}</small></h3>

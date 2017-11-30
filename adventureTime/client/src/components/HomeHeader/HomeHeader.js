@@ -13,11 +13,11 @@ const HomeHeader = props =>
 	    	<div>
 					<div id="loginEmail" className="input-field col s3">
 					  <label for="login-email"> email:</label>
-					    <input type="email" name="email" />
+					    <input type="email" name="email" id="inputEmail"/>
 					</div>
 					<div id="loginPassword" className="input-field col s3">
 					  <label for="password-login">password:</label>
-					  <input type="password" name="password" id="password-login" />
+					  <input type="password" name="password" id="inputPassword" />
 					</div>
 				</div>
 				
