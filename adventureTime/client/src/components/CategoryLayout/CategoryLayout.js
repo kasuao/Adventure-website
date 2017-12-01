@@ -5,6 +5,7 @@ const CategoryLayout = props =>
 
 
 	<div className="CategoryLayout">
+  
 
 		<div class="panel panel-default">
   		<div class="panel-heading">
@@ -42,7 +43,7 @@ const CategoryLayout = props =>
 					
 		<div class="panel panel-default">
   <div class="panel-heading">
-  <h2>My EPIC TRAIL RIDE</h2>
+  <h2>My Epic Trail Ride</h2>
     <h3 class="panel-title">{props.userName}</h3>
   </div>
   <div class="panel-body">
@@ -67,7 +68,7 @@ const CategoryLayout = props =>
 <div class="panel panel-default">
   <div class="panel-heading">
   <h2>My Lake Blanche Adventure</h2>
-    <h3 class="panel-title">Posted by: adventureBoy345</h3>
+    <h3 class="panel-title"></h3>
   </div>
   <div class="panel-body">
     type specimen book. It has survived not only five centuries, 

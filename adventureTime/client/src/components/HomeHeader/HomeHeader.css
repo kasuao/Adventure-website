@@ -4,17 +4,14 @@
 }
 .homeHeader {
 	display:flex;
-	align-items: center;
+	align-items: flex-start;
 }
 
 .form-container {
 	width:250px;
 }
 #loginSubmit{
-/*	position:absolute;*/
-/*	top: 110px;
-	right:10%;*/
-	border:black double 5px;
+	border:black double 7px;
 	font-family: 'Vibur', cursive;
 	font-size: 20pt;
 	width: 125px;
@@ -45,17 +42,20 @@
 	justify-content:flex-start;
 	width:100%;
 	margin: 0 auto;
+	margin-left: 30px;
 
 }
 .submit-button{
 	color:black;
 	color:black;
 	width: 90%;
-	margin: 0 auto;
+	margin-left: 60px;
+	margin-bottom: 20px;
 }
 
 input {
-	font-size: 36pt !important;
+	font-size: 18pt !important;
+	font-family: 'Rancho', cursive;
 }
 .input-field label {
 	top:0;

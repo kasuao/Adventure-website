@@ -1,24 +1,21 @@
-#createUser{
+#adventureDisplay{
 	color:black;
-	position: absolute;
-	right:25%;
+	position: fixed;
 	border: solid black 5px;
 	background-color: white;
-	top:7%;
-	left:25%;
+	top:50px;
+	left:10%;
+	right:10%;
+	bottom:50px;
 	box-shadow: 10px 10px 5px #888888;
 	border-radius: 10px;
 	margin-bottom: 50px;
 	font-size: 18pt;
 	font-family:'Rancho', cursive;
 	font-weight: bolder;
-}
-#closeWindow{
-	cursor: pointer;
-	width:15px;
-	margin-left: 47%;
+	overflow: auto;
 }
 
-#newFname {
-	font-size: 12pt;
+#closeModal{
+	cursor: pointer;
 }

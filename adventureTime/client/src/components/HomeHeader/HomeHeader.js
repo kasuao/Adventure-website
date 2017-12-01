@@ -7,6 +7,8 @@ const HomeHeader = props =>
 
 	  <div className="left-header-col">
 	    <h1 id="siteTitle">ADVENTURE AWAITS</h1>
+	    <h2> What is life, but one grand adventure</h2>
+	    <span class="glyphicons glyphicons-tree-conifer"></span>
 	  </div>
 	  <div className="right-header-col">
 	    <form className="form-container">
@@ -19,9 +21,10 @@ const HomeHeader = props =>
 				  <input type="password" name="password" id="inputPassword" />
 				</div>
 			</form>
-				<div>
-					<button id="loginSubmit" value="Login" onClick={props.handleUserLogin}>Login</button>
-				</div>
+
+			<div className="submit-button">
+				<button id="loginSubmit" value="Login" onClick={props.handleUserLogin}>Login</button>
+			</div>
 			<div className="bottom-header">
 					<p onClick={props.handleUserCreate} id="create">Create an Account</p>
 			</div>
