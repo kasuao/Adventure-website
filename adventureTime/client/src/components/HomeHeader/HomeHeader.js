@@ -7,6 +7,8 @@ const HomeHeader = props =>
 
 	  <div className="left-header-col">
 	    <h1 id="siteTitle">ADVENTURE AWAITS</h1>
+	    <h2> What is life, but one grand adventure</h2>
+	    <span class="glyphicons glyphicons-tree-conifer"></span>
 	  </div>
 	  <div className="right-header-col">
 	    <form className="form-container">
