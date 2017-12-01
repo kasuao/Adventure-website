@@ -6,12 +6,27 @@ h1 {
 
 h2 {
 	font-family: 'Vibur', cursive;
+	text-align: center;
+
 }
 
-.thumbnail {
+h3 {
+	font-family: 'Rancho', cursive;
+}
 
+h4 {
+ font-family:'Rancho', cursive;
 }
 
 input {
-	color:pink;
+	color:black;
+}
+
+.panel-body {
+	font-family:'Rancho', cursive;
+	font-size: 16pt;
+	border: black double 5px;
+	width: 95%;
+	margin-left: 32px;
+
 }

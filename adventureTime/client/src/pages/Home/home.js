@@ -162,9 +162,14 @@ class Home extends Component {
 						sessionStorage.setItem('about', tempAbout);
 						sessionStorage.setItem('adventureLevel', tempAdventureLevel);
 						sessionStorage.setItem('viewOtherUser', 0);
+						//set a timout function to ensure the program has finished before moving forward to the next page.
+					  if(sessionStorage.getItem('loggedIn') == "true"){
+			    		setTimeout(function(){
+					    	window.location.href = '/user';
+							}, 1000);
+					  }
 					}).catch(function(err){
 						console.log(err);
-						alert("error");
 						sessionStorage.setItem('userName', "");
 						sessionStorage.setItem('loggedIn', "false");
 					});
@@ -173,14 +178,17 @@ class Home extends Component {
       .catch(function(err)  {
       	sessionStorage.setItem('userName', "");
 				sessionStorage.setItem('loggedIn', "false");
+				alert("error");
       	console.log(err);
     	});
+
     	//set a timout function to ensure the program has finished before moving forward to the next page.
     	setTimeout(function(){
 		    if(sessionStorage.getItem('loggedIn') == "true"){
-		    	// window.location.href = '/user';
+		    	window.location.href = '/user';
 		    }
 			}, 1000);
+
 
 	};
 

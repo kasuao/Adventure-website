@@ -19,7 +19,18 @@ const CreateUserModal = props =>
 
 			Confirm Password: <input className='center' id='newPassword2' type='password' name='password2' onChange={props.handleFormChange}/>
 
-			Adventure Level: <input className='center' id='newAdLvl' type='text' name='adventureLevel' onChange={props.handleFormChange}/>
+			Adventure Level: <select className='form-control center' id='newAdLvl' type='text' name='adventureLevel' onChange={props.handleFormChange}>
+			  <option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+				<option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+			</select>
 
 			Profile Picture: <label className="file-upload-container" htmlFor="file-upload" onChange={props.handleFormChange}>
 

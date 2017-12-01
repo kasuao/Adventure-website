@@ -11,9 +11,6 @@
 	width:250px;
 }
 #loginSubmit{
-/*	position:absolute;*/
-/*	top: 110px;
-	right:10%;*/
 	border:black double 5px;
 	font-family: 'Vibur', cursive;
 	font-size: 20pt;
@@ -55,7 +52,8 @@
 }
 
 input {
-	font-size: 36pt !important;
+	font-size: 18pt !important;
+	font-family: 'Rancho', cursive;
 }
 .input-field label {
 	top:0;
