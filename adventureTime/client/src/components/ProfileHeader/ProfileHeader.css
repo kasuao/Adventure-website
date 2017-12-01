@@ -36,5 +36,10 @@ border-top: black solid 8px;
 width: 100%;
 }
 .postPic{
+	max-height: 500px;
+	padding-right: 10px;
 	width:100%;
+}
+.postTitle{
+	cursor: pointer;
 }

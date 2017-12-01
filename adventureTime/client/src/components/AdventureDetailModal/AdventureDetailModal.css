@@ -1,0 +1,21 @@
+#adventureDisplay{
+	color:black;
+	position: fixed;
+	border: solid black 5px;
+	background-color: white;
+	top:50px;
+	left:10%;
+	right:10%;
+	bottom:50px;
+	box-shadow: 10px 10px 5px #888888;
+	border-radius: 10px;
+	margin-bottom: 50px;
+	font-size: 18pt;
+	font-family:'Rancho', cursive;
+	font-weight: bolder;
+	overflow: auto;
+}
+
+#closeModal{
+	cursor: pointer;
+}

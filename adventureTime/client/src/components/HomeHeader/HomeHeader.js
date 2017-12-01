@@ -18,10 +18,10 @@ const HomeHeader = props =>
 				  <label for="password-login">password:</label>
 				  <input type="password" name="password" id="inputPassword" />
 				</div>
-				<div className="submit-button">
-					<button id="loginSubmit" value="Login" onClick={props.handleUserLogin}>Login</button>
-				</div>
 			</form>
+			<div className="submit-button">
+				<button id="loginSubmit" value="Login" onClick={props.handleUserLogin}>Login</button>
+			</div>
 			<div className="bottom-header">
 					<p onClick={props.handleUserCreate} id="create">Create an Account</p>
 			</div>
