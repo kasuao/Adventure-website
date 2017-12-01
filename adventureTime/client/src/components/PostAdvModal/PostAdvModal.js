@@ -51,6 +51,19 @@ const PostAdvModal = props =>
 								<option>10</option>
 							  </select>
 
+			Overall Enjoyment: <select className='form-control' id='newEnjoyment' type='text' name='enjoymentLevel' onChange={props.handleFormChange}>
+							  <option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+								<option>6</option>
+								<option>7</option>
+								<option>8</option>
+								<option>9</option>
+								<option>10</option>
+							  </select>
+
 			Adventure Pictures: <label className="file-upload-container" htmlFor="file-upload" onChange={props.handleFormChange}>
 
         <input id="file-upload" onChange={props.uploadPic} type="file" name="adventurePic" style={{display:'none'}}/>
