@@ -178,7 +178,7 @@ class Home extends Component {
     	//set a timout function to ensure the program has finished before moving forward to the next page.
     	setTimeout(function(){
 		    if(sessionStorage.getItem('loggedIn') == "true"){
-		    	window.location.href = '/user';
+		    	// window.location.href = '/user';
 		    }
 			}, 1000);
 
@@ -190,9 +190,11 @@ class Home extends Component {
 		If the information is correct, update the global state variables with the user information to be used on other pages.
 	*/
 	handleUserLogin = () => {
+		// alert("hey");
 		API.getUser(document.getElementById("inputEmail").value)
 		.then(function(res) {
 			console.log(res);
+			
 			if(res.data){
 				if(res.data.email === document.getElementById("inputEmail").value && res.data.password === document.getElementById("inputPassword").value){
 						//set up session variables to save the unique username and user information to be used throughout the application.
@@ -242,7 +244,7 @@ class Home extends Component {
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
 				/>
 				<div class="img-container">
-					<Link to={"../Adventure/"}><img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/></Link>
+					<Link to={"../adventures/category/Hiking"}><img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/></Link>
 					<img width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
 					<img width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
 				</div>

@@ -8,8 +8,8 @@ router.route("/")
 
 // Matches with "/api/adventures/:category"
 router
-  .route("/:category")
-  .get(adventuresController.findOne)
+  .route("/category/:category")
+  .get(adventuresController.findAllCategories)
   .put(adventuresController.update)
   .delete(adventuresController.remove);
 
