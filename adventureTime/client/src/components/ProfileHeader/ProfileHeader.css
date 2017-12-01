@@ -16,9 +16,16 @@
 	background-color: #f5f5f5;
 }
 
+#profile-info{
+	border: black double 10px;
+	padding: 5 5 5 5;
+}
+
 
 #rating{
 		border: black double 5px;
+		margin-top: 20px;
+
 
 }
 
@@ -26,10 +33,17 @@
 		border: black double 5px;
 }
 
+.blog-post {
+	display:flex;
+	justify-content: space-around;
+	flex-direction: column;
+
+}
 #profPic {
-	margin-left: 60px;
+/*	margin-left: 10px;*/
 	margin-bottom: 60px;
   width:100%;
+  margin-top: 20px;
 }
 #blogging{
 border-top: black solid 8px;
