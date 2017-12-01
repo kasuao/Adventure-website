@@ -190,9 +190,11 @@ class Home extends Component {
 		If the information is correct, update the global state variables with the user information to be used on other pages.
 	*/
 	handleUserLogin = () => {
+		// alert("hey");
 		API.getUser(document.getElementById("inputEmail").value)
 		.then(function(res) {
 			console.log(res);
+			
 			if(res.data){
 				if(res.data.email === document.getElementById("inputEmail").value && res.data.password === document.getElementById("inputPassword").value){
 						//set up session variables to save the unique username and user information to be used throughout the application.
@@ -244,7 +246,7 @@ class Home extends Component {
 				<div className="quotes"><h2>Adventure is worth while itself</h2>
 				</div>
 				<div class="img-container">
-					<Link to={"../Adventure/"}><img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/></Link>
+					<Link to={"../adventures/category/Hiking"}><img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/></Link>
 					<img width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
 					<img width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
 				</div>
