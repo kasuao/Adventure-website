@@ -241,6 +241,8 @@ class Home extends Component {
 				</HomeHeader>
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
 				/>
+				<div className="quotes"><h2>Adventure is worth while itself</h2>
+				</div>
 				<div class="img-container">
 					<Link to={"../Adventure/"}><img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/></Link>
 					<img width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
