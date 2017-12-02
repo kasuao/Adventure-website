@@ -47,8 +47,9 @@ class Categories extends Component {
 	}
 
 	getData = event => {
+    console.log(sessionStorage.getItem('category'));
     // if a category is specified...
-    if (sessionStorage.getItem('category') != "") {
+    if (sessionStorage.getItem('category') !== null && sessionStorage.getItem('category') !== "") {
       // use this API.js function that filters by the category property.
       API.getAdventureCategory()
       .then(res =>{
@@ -64,8 +65,8 @@ class Categories extends Component {
       console.log(this.state.adventures[0].adventure);
     })
       .catch(err => console.log(err));
-    }else
-		{API.getAdventures()
+    }else{
+      API.getAdventures()
         .then(res =>{
           let tempArray = [];
           for (var i = 0; i < res.data.length; i++) {
@@ -79,7 +80,7 @@ class Categories extends Component {
           console.log(this.state.adventures[0].adventure);
         })
           .catch(err => console.log(err));
-      }
+    }
 	
 	}
 	
@@ -89,7 +90,6 @@ class Categories extends Component {
     bring up a modal of the adventure and display additional adventure information.
   */
   handleBlogClick = event => {
-  	alert("worked");
     let id = event.target.getAttribute("name");
     console.log(event.target.getAttribute("name"));
     this.setState({
@@ -141,19 +141,16 @@ class Categories extends Component {
 		return(
 			<div>
 	
-			<AdventureHeader/>
+			<AdventureHeader>
+      </AdventureHeader>
 
 			<CategoryLayout age="50" tagline=""
 		
 			/>
 
 			<BodyCategory
-
-			adventures={this.state.adventures}>
-				
-
-
-
+        handleBlogClick={this.handleBlogClick}
+  			adventures={this.state.adventures}>
 			</BodyCategory>
 
 			<Footer></Footer>
