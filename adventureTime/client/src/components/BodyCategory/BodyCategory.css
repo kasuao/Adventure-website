@@ -1,0 +1,8 @@
+.postPic{
+	max-height: 500px;
+	padding-right: 10px;
+	width:100%;
+}
+.postTitle{
+	cursor: pointer;
+}
