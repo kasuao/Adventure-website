@@ -140,7 +140,6 @@ class Categories extends Component {
   };
 
   handleCategoryRedirect = () => {
-    alert("redirect works");
     sessionStorage.setItem('category', "");
     window.location.href = '/categories/';
   }
