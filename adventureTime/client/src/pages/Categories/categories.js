@@ -139,7 +139,11 @@ class Categories extends Component {
     });
   };
 
-
+  handleCategoryRedirect = () => {
+    alert("redirect works");
+    sessionStorage.setItem('category', "");
+    window.location.href = '/categories/';
+  }
 
 	
 	
@@ -147,8 +151,8 @@ class Categories extends Component {
 		return(
 			<div>
 
-      <Nav>
-      </Nav>
+      <Nav handleCategoryRedirect = {this.handleCategoryRedirect}>
+        </Nav>
 	
 			<AdventureHeader>
       </AdventureHeader>
