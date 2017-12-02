@@ -12,6 +12,12 @@ const PostAdvModal = props =>
 
 			Adventure Title: <input className="center" id="newAdventure" type="text" name="adventure" onChange={props.handleFormChange}/>
 
+			Category: <select className="form-control" id="newCategory" type="text" name="category" onChange={props.handleFormChange}>
+								<option>Hiking</option>
+								<option>Fishing</option>
+								<option>Biking</option>
+							  </select>
+
 			Difficulty Level: <select className="form-control" id="newDifficulty" type="text" name="difficultyLevel" onChange={props.handleFormChange}>
 								<option>1</option>
 								<option>2</option>

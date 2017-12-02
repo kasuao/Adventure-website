@@ -28,6 +28,7 @@ class User extends Component {
     enjoymentLevel: "",
     adventurePic: "",
     description: "",
+    category: "",
 
     // data to populate the site
     user: {},
@@ -159,7 +160,7 @@ the new post modal will not pop up (close the window).
   handleFormChange = (event) =>{
     var stateObject = function() {
       let dynamicStateChange = {};
-      dynamicStateChange[this.target.name] = this.target.value;
+        dynamicStateChange[this.target.name] = this.target.value;
        return dynamicStateChange;
     }.bind(event)();
     this.setState(stateObject);
@@ -175,12 +176,13 @@ the new post modal will not pop up (close the window).
     //this should all be handled by state variables, but due to a time crunch we went with session variables to avoid redux. Future iterations should use Redux however.
     const tempUserName = sessionStorage.getItem('userName');
     const tempAdventure = this.state.adventure;
+    const tempCategory = this.state.category;
     const tempDifficultyLevel = this.state.difficultyLevel * 10;
     const tempLandscapeLevel = this.state.landscapeLevel * 10;
     const tempFunLevel = this.state.funLevel * 10;
     const tempEnjoymentLevel = this.state.enjoymentLevel * 10;
     const tempDescription = this.state.description;
-
+    console.log(tempCategory);
     //send a call to the cloudinary API to post a new user picture.
     axios({
       url: this.state.cloudinary_url,
@@ -195,6 +197,7 @@ the new post modal will not pop up (close the window).
         API.saveAdventure({
           "userName" : tempUserName,
           "adventure" : tempAdventure,
+          "category" : tempCategory,
           "difficultyLevel" : tempDifficultyLevel,
           "landscapeLevel" : tempLandscapeLevel,
           "funLevel" : tempFunLevel,
