@@ -163,6 +163,7 @@ class Home extends Component {
 						sessionStorage.setItem('about', tempAbout);
 						sessionStorage.setItem('adventureLevel', tempAdventureLevel);
 						sessionStorage.setItem('viewOtherUser', 0);
+						sessionStorage.setItem('otherProfile', "");
 						//set a timout function to ensure the program has finished before moving forward to the next page.
 					  if(sessionStorage.getItem('loggedIn') == "true"){
 			    		setTimeout(function(){
@@ -262,6 +263,7 @@ class Home extends Component {
 
 	};
 
+	//redirect to the category page and set our category session storage to blank
 	handleCategoryRedirect = () => {
 		sessionStorage.setItem('category', "");
 		window.location.href = '/categories/';
@@ -271,7 +273,8 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
-				<Nav handleCategoryRedirect = {this.handleCategoryRedirect}>
+				<Nav
+					handleCategoryRedirect={this.handleCategoryRedirect}>
 				</Nav>
 
 				<HomeHeader 

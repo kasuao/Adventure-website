@@ -41,7 +41,8 @@ class Categories extends Component {
     modalDifficultyLevel: "",
     modalFunLevel: "",
     modalLandscapeLevel: "",
-    modalUserName: ""
+    modalUserName: "",
+    modalEmail: ""
 	};
 	
 	componentDidMount(){
@@ -97,10 +98,10 @@ class Categories extends Component {
   */
   handleBlogClick = event => {
     let id = event.target.getAttribute("name");
-    console.log(event.target.getAttribute("name"));
     this.setState({
       DispAdventureModal: 1
     });
+
     //make a call to the database to recieve the adventures.
       API.getAdventures()
         .then(res => {
@@ -120,6 +121,7 @@ class Categories extends Component {
     Set the state variables pertaining to the adventure modal.
   */
   modalData = data => {
+    console.log(data);
     this.setState({
       modalAdventure: data.adventure,
       modalAdventurePic: data.adventurePic,
@@ -128,8 +130,10 @@ class Categories extends Component {
       modalDifficultyLevel: data.difficultyLevel,
       modalFunLevel: data.funLevel,
       modalLandscapeLevel: data.landscapeLevel,
-      modalUserName: data.userName
+      modalUserName: data.userName,
+      modalEmail: data.email
     });
+
   };
 
   //When selected this function will close the adventure detail modal
@@ -139,6 +143,11 @@ class Categories extends Component {
     });
   };
 
+  //visit another users profile page when the username is selected in the modal view.
+  loadOtherProfile = (event) => {
+    //sessionStorage.setItem('otherProfile', this.state.modalEmail);
+    //window.location.href = '/user/';
+  }
   handleCategoryRedirect = () => {
     sessionStorage.setItem('category', "");
     window.location.href = '/categories/';
@@ -175,7 +184,8 @@ class Categories extends Component {
           modalAdventure={this.state.modalAdventure}
           modalDescription={this.state.modalDescription}
           modalDate={this.state.modalDate}
-          closeAdventureDetailModal={this.closeAdventureDetailModal}>
+          closeAdventureDetailModal={this.closeAdventureDetailModal}
+          loadOtherProfile={this.loadOtherProfile}>
         </AdventureDetailModal>
       : ""}
 

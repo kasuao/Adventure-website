@@ -8,10 +8,10 @@ const AdventureDetailModal = props =>
 
     	<div className="row">
     		<div className="col-md-10">
-					<h2 className="left" id="modalUserName">{props.modalUserName}</h2>
+					<h2 className="left" id="modalUserName" name={props.modalEmail} onClick={props.loadOtherProfile}>{props.modalUserName}</h2>
 				</div>
 				<div className="col-md-2">
-					<p className='center' id='closeModal' onClick={props.closeAdventureDetailModal}>Close</p>
+					<div><span className='right' id='closeModal' onClick={props.closeAdventureDetailModal}>Close</span></div>
 				</div>
 			</div>
 
