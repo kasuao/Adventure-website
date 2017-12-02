@@ -1,7 +1,9 @@
 .AdventureHeader {
-	color: black;
-	border:black double 5px;
-	margin-bottom: 1px;
+	color: white;
+	border:black solid 10px;
+	margin-bottom: 20px;
+
+
 }
 
 
