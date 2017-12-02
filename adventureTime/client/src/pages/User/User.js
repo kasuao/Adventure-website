@@ -22,13 +22,13 @@ class User extends Component {
 
     // Store info being sent to the DB here
     adventure: "",
-    difficultyLevel: "",
-    landscapeLevel: "",
-    funLevel: "",
-    enjoymentLevel: "",
+    difficultyLevel: "1",
+    landscapeLevel: "1",
+    funLevel: "1",
+    enjoymentLevel: "1",
     adventurePic: "",
     description: "",
-    category: "",
+    category: "Hiking",
 
     // data to populate the site
     user: {},
@@ -62,30 +62,49 @@ class User extends Component {
     modalDifficultyLevel: "",
     modalFunLevel: "",
     modalLandscapeLevel: "",
-    modalUserName: ""
+    modalUserName: "",
+    modalEmail: ""
   };
   /*
     This function will run whenever the component mounts to the page.
   */
   componentDidMount(){
+    if(sessionStorage.getItem('loggedIn') == "false" || sessionStorage.getItem('loggedIn') == null || sessionStorage.getItem('loggedIn') == ""){
+      window.location.href = '/';
+    };
     this.getData();
     // this.popData();
   }
 
   // This function will receive user information from our database based on a unique email.
   getData = event => {
-    API.getUser(sessionStorage.getItem('email'))
-      .then(res =>{ this.setState({ 
-          userName: res.data.userName,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          profilePic: res.data.profilePic,
-          about: res.data.about,
-          adventureLevel: res.data.adventureLevel
+    if(sessionStorage.getItem('otherProfile') !== "" && sessionStorage.getItem('otherProfile') !== null){
+      API.getUser(sessionStorage.getItem('otherProfile'))
+        .then(res =>{ this.setState({ 
+            userName: res.data.userName,
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+            profilePic: res.data.profilePic,
+            about: res.data.about,
+            adventureLevel: res.data.adventureLevel
+          })
+        console.log(res);
         })
-      console.log(res);
-      })
-      .catch(err => console.log(err));
+        .catch(err => console.log(err));
+      } else {
+      API.getUser(sessionStorage.getItem('email'))
+        .then(res =>{ this.setState({ 
+            userName: res.data.userName,
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+            profilePic: res.data.profilePic,
+            about: res.data.about,
+            adventureLevel: res.data.adventureLevel
+          })
+        console.log(res);
+        })
+        .catch(err => console.log(err));
+      }
     API.getAdventures()
     .then(res =>{ 
       let tempArray = [];
@@ -115,9 +134,7 @@ there will be a modal popup prompting the user to post their adventure.
 */
 
   handlePostCreate = () => {
-
     this.setState({
-
       createPost: true
     })
     
@@ -175,6 +192,7 @@ the new post modal will not pop up (close the window).
     //set temporary variables to the current state variables to be used inside the function scope.
     //this should all be handled by state variables, but due to a time crunch we went with session variables to avoid redux. Future iterations should use Redux however.
     const tempUserName = sessionStorage.getItem('userName');
+    const tempEmail = sessionStorage.getItem('email');
     const tempAdventure = this.state.adventure;
     const tempCategory = this.state.category;
     const tempDifficultyLevel = this.state.difficultyLevel * 10;
@@ -182,7 +200,7 @@ the new post modal will not pop up (close the window).
     const tempFunLevel = this.state.funLevel * 10;
     const tempEnjoymentLevel = this.state.enjoymentLevel * 10;
     const tempDescription = this.state.description;
-    console.log(tempCategory);
+
     //send a call to the cloudinary API to post a new user picture.
     axios({
       url: this.state.cloudinary_url,
@@ -196,6 +214,7 @@ the new post modal will not pop up (close the window).
         //after the axios call has been made, send our data to the database.
         API.saveAdventure({
           "userName" : tempUserName,
+          "email" : tempEmail,
           "adventure" : tempAdventure,
           "category" : tempCategory,
           "difficultyLevel" : tempDifficultyLevel,
@@ -203,7 +222,7 @@ the new post modal will not pop up (close the window).
           "funLevel" : tempFunLevel,
           "enjoymentLevel" : tempEnjoymentLevel,
           "adventurePic": "https://res.cloudinary.com/copilot28/image/upload/a_exif/" + res.data.public_id + ".jpeg",
-          "description" : tempDescription,
+          "description" : tempDescription
         })
         console.log("submitted");
         window.location.reload();
@@ -252,9 +271,9 @@ the new post modal will not pop up (close the window).
       modalDifficultyLevel: data.difficultyLevel,
       modalFunLevel: data.funLevel,
       modalLandscapeLevel: data.landscapeLevel,
-      modalUserName: data.userName
+      modalUserName: data.userName,
+      modalEmail: data.email
     });
-    console.log(this.state.modalFunLevel);
   };
 
   //When selected this function will close the adventure detail modal
@@ -264,16 +283,13 @@ the new post modal will not pop up (close the window).
     });
   };
 
-/*
-modalAdventure: "",
-    modalAdventurePic: "",
-    modalDate: "",
-    modalDescription: "",
-    modalDifficultyLevel: "",
-    modalFunLevel: "",
-    modalLandscapeLevel: "",
-    modalUserName: ""
-*/
+  //Save to a session variable a different profile the user wants to view.
+  loadOtherProfile = (event) => {
+    //sessionStorage.setItem('otherProfile', event.target.getAttribute("name"));
+    //console.log(event.target.getAttribute("name"));
+    //window.location.href = '/user/';
+  }
+
 
   
   render() {
@@ -317,7 +333,8 @@ modalAdventure: "",
             modalAdventure={this.state.modalAdventure}
             modalDescription={this.state.modalDescription}
             modalDate={this.state.modalDate}
-            closeAdventureDetailModal={this.closeAdventureDetailModal}>
+            closeAdventureDetailModal={this.closeAdventureDetailModal}
+            loadOtherProfile={this.loadOtherProfile}>
           </AdventureDetailModal>
         : ""}
 
