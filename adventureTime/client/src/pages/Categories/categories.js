@@ -48,21 +48,25 @@ class Categories extends Component {
 
 	getData = event => {
     // if a category is specified...
-    if (sessionStorage.getItem('category') != "") {
+    if (sessionStorage.getItem('category') != "" && sessionStorage.getItem('category') != null) {
       // use this API.js function that filters by the category property.
-      API.getAdventureCategory()
-      .then(res =>{
+      API.getAdventures()
+    .then(res =>{ 
       let tempArray = [];
       for (var i = 0; i < res.data.length; i++) {
-        tempArray.push(res.data[i]);
+        if(res.data[i].category === sessionStorage.getItem('category')){
+          tempArray.push(res.data[i]);
+        }
       }
-      this.setState({
+      console.log(tempArray);
+      this.setState({ 
         adventures: tempArray
       })
+      
       console.log(res);
       console.log(this.state.adventures);
       console.log(this.state.adventures[0].adventure);
-    })
+      })
       .catch(err => console.log(err));
     }else
 		{API.getAdventures()
