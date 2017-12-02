@@ -145,22 +145,29 @@ class Categories extends Component {
 
   //visit another users profile page when the username is selected in the modal view.
   loadOtherProfile = (event) => {
-    //sessionStorage.setItem('otherProfile', this.state.modalEmail);
-    //window.location.href = '/user/';
-  }
+    sessionStorage.setItem('otherProfile', this.state.modalEmail);
+    window.location.href = '/user/';
+  };
+
   handleCategoryRedirect = () => {
     sessionStorage.setItem('category', "");
     window.location.href = '/categories/';
   }
 
+  handleProfileRedirect = () => {
+    sessionStorage.setItem('otherProfile', "");
+    window.location.href = '/user/';
+  }
 	
 	
 	render() {
 		return(
 			<div>
 
-      <Nav handleCategoryRedirect = {this.handleCategoryRedirect}>
-        </Nav>
+      <Nav 
+        handleCategoryRedirect = {this.handleCategoryRedirect}
+        handleProfileRedirect = {this.handleProfileRedirect}>
+      </Nav>
 	
 			<AdventureHeader>
       </AdventureHeader>
