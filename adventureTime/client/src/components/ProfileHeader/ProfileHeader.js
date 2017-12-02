@@ -3,7 +3,8 @@ import "./ProfileHeader.css";
 
 //Create the Header of our homepage as a component.
 const ProfileHeader = props =>
-<div className="container">
+<div id="background-container" className="container">
+
   <div className="profileHeader">
     <h1 id="profileTitle">PROFILE PAGE</h1>
 
@@ -25,28 +26,15 @@ const ProfileHeader = props =>
 
     		<div id="aboutMe">
         			<h3>About Me</h3>
-              <p> It is a long established fact that a reader will be distracted 
-              by the readable content of a page when looking at its layout. The point 
-              of using Lorem Ipsum is that it has a more-or-less normal distribution 
-              of letters, as opposed to using 'Content here, content here', making it 
-              look like readable English. Many desktop publishing packages and web page
-               editors now use Lorem Ipsum as their default model text, and a search 
-               for 'lorem ipsum' will uncover many web sites still in their infancy. 
-                Various versions have evolved over the years, sometimes by accident,
-                 sometimes on purpose (injected humour and the like).</p>
+              <p>{props.bio}</p>
         	</div>
 
       		<div className="bio">	
 
-              <p>{props.bio}</p>
+            
           		{/*<p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus.</p>*/}
       		</div>	
-        </div>
-
-      {/* col medium 8 ending div */}
-      </div>
-
-      <div id="rating"className="col-md-4">
+           <div id="rating"className="col-md-4">
 
         <div className="medium-3 columns" data-sticky-container>
         <div className="sticky" data-sticky data-anchor="content">
@@ -54,11 +42,18 @@ const ProfileHeader = props =>
           <h4>Adventure Level</h4>
 
           <div className="progress" style={{width: 250 + "px", height: 25 + "px"}}>
-  			<div className="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
-  			aria-valuenow={props.adventureLevel} aria-valuemin="0" aria-valuemax="100" style={{width: props.adventureLevel + "%"}}>
-    		{props.adventureLevel}%
-  			</div>
-		  </div>
+        <div className="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+        aria-valuenow={props.adventureLevel} aria-valuemin="0" aria-valuemax="100" style={{width: props.adventureLevel + "%"}}>
+        {props.adventureLevel}%
+        </div>
+      </div>
+
+        </div>
+
+      {/* col medium 8 ending div */}
+      </div>
+
+     
 
       
           

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Footer from "../../components/Footer";
 import AdventureHeader from "../../components/AdventureHeader";
-import CategoryLayout from "../../components/CategoryLayout";
+// import CategoryLayout from "../../components/CategoryLayout";
 import BodyCategory from "../../components/BodyCategory";
 import "./categories.css";
 
@@ -64,9 +64,7 @@ class Categories extends Component {
 	
 			<AdventureHeader/>
 
-			<CategoryLayout age="50" tagline=""
 		
-			/>
 
 			<BodyCategory
 
