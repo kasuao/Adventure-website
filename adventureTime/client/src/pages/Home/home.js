@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import axios from "axios";
 //import the used components
+import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import HomeHeader from "../../components/HomeHeader";
 import CreateUserModal from "../../components/CreateUserModal";
@@ -251,6 +252,9 @@ class Home extends Component {
 	render() {
 		return (
 			<div>
+				<Nav>
+				</Nav>
+
 				<HomeHeader 
 					handleUserCreate={this.handleUserCreate} 
 					handleUserLogin={this.handleUserLogin.bind(this)}

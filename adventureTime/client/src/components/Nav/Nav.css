@@ -7,8 +7,12 @@
 
 .navbar-inverse .navbar-brand {
 
-	font-size: 36pt;
+	font-size: 20pt;
 	font-family: 'Bungee Inline', cursive;
+}
+
+.navbar-nav {
+	background-color: #515151;
 }
 
 nav ul a {
