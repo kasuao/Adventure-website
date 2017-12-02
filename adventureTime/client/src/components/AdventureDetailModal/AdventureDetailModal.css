@@ -16,6 +16,15 @@
 	overflow: auto;
 }
 
+.col-md-5 {
+	border: black solid 3px;
+	  border-radius: 20px;
+
+}
+#postBlogPic {
+	border: black solid 3px;
+	 border-radius: 20px;
+}
 #closeModal{
 	cursor: pointer;
 }
@@ -25,5 +34,12 @@
 
 	font-family:'Bungee Shade', cursive;
 	
+}
+
+#adventureDetailInfo {
+	border: black solid 3px;
+  border-radius: 10px;
+
+
 }
 /*'Bungee Inline', cursive;'*/

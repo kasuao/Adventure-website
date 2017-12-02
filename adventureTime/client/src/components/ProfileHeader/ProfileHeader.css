@@ -1,5 +1,5 @@
-#root {
-	background:url("/Images/snowwhite.png") no-repeat center center fixed;
+body {
+	background:url("/Images/night.jpg") no-repeat center center fixed;
 	background-size: cover;
 
 }
@@ -14,16 +14,30 @@ h4 {
 
 #profileTitle {
 	text-align: center;
+	font-family:'Bungee Outline', cursive;
+	color: white;
+	background-color:black;
+	border: 2px solid white;
+  border-radius: 20px;
 }
 
 #profileName {
 	text-align: center;
+	color: white;
+	background-color: black;
+	border: 2px solid white;
+  border-radius: 20px;
+  width: 70%;
+  margin-left: 120px;
+
 }
 
 #aboutMe {
 	text-align: center;
-	border: black double 5px;
+	border: white solid 3px;
+	border-radius: 20px;
 	margin-bottom: 50px;
+	color: white;
 }
 
 .progress {
@@ -33,31 +47,38 @@ h4 {
 #profile-info{
 	display: flex;
 	justify-content: center;
-	border: black double 10px;
+	border: white solid 3px;
 	padding: 5 5 5 5;
-	background-color: white;
+	background-color:black;
+	border: 3px solid white;
+  border-radius: 20px;
 
 }
 
 
 #rating{
 
-		border: black double 5px;
+		border: white solid 3px;
+		border-radius: 20px;
 		width: auto;
 		margin: auto;
 		margin-bottom: 20px;
+		color: white;
 
 
 }
 
 .thumbnail {
-		border: black double 5px;
+		border: white solid 5px;
 }
 
 .blog-post {
 	display:flex;
 	justify-content: space-around;
 	flex-direction: column;
+	/*border: 10px solid black;*/
+  border-radius: 20px;
+  background-color: black;
 /*	border: black double 8px;*/
 
 }
@@ -65,7 +86,9 @@ h4 {
 /*	margin-left: 10px;*/
 	margin-bottom: 60px;
   width:100%;
-  margin-top: 20px;
+  margin-top: 30px;
+  border-radius: 20px;
+  color: white;
 }
 #blogging{
 border-top: black solid 8px;
@@ -73,13 +96,14 @@ width: 100%;
 }
 .postPic{
 	max-height: 500px;
-	padding-right: 10px;
 	width:100%;
+	border:white solid 3px;
+	border-radius: 20px;
 }
 .postTitle{
 	cursor: pointer;
 	font-size: 36pt;
-	color:black;
+	color:white;
 	font-family: 'Bungee inline', cursive;
 
 }
