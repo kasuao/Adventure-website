@@ -15,7 +15,7 @@ const AdventureDetailModal = props =>
 				</div>
 			</div>
 
-			<div className="row center">
+			<div id="blogPostTitle"className="row center">
 				<p id="adventureDetailTitle">{props.modalAdventure}</p>
 			</div>
 

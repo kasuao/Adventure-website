@@ -6,7 +6,7 @@ import axios from "axios";
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import AdventureHeader from "../../components/AdventureHeader";
-import CategoryLayout from "../../components/CategoryLayout";
+// import CategoryLayout from "../../components/CategoryLayout";
 import BodyCategory from "../../components/BodyCategory";
 import AdventureDetailModal from "../../components/AdventureDetailModal";
 import "./categories.css";
@@ -152,9 +152,7 @@ class Categories extends Component {
 	
 			<AdventureHeader/>
 
-			<CategoryLayout age="50" tagline=""
 		
-			/>
 
 			<BodyCategory
 

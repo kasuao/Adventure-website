@@ -18,19 +18,7 @@ const CategoryLayout = props =>
 
        </div>
     <div class="panel-body">
-    type specimen book. It has survived not only five centuries, 
-					 but also the leap into electronic typesetting, remaining 
-					 essentially unchanged. It was popularised in the 1960s with
-					  the release of Letraset sheets containing Lorem Ipsum 
-					  passages, and more recently with desktop publishing software 
-					  like Aldus PageMaker including versions of Lorem Ipsum.
-					  
-					 type specimen book. It has survived not only five centuries, 
-					 but also the leap into electronic typesetting, remaining 
-					 essentially unchanged. It was popularised in the 1960s with
-					  the release of Letraset sheets containing Lorem Ipsum 
-					  passages, and more recently with desktop publishing software 
-					  like Aldus PageMaker including versions of Lorem Ipsum.
+    
     <img class="thumbnail" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAk
     GBxMTEhMTEhMVFhUXFx0YGBgYFx0YFhgbGBsYGBoaGBgaHSghGhomGxgYITEhJSorLi4uHR8zODMtNygtLisBC
     goKDg0OGxAQGy8lHyYtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/
@@ -47,19 +35,7 @@ const CategoryLayout = props =>
     <h3 class="panel-title">{props.userName}</h3>
   </div>
   <div class="panel-body">
-    type specimen book. It has survived not only five centuries, 
-					 but also the leap into electronic typesetting, remaining 
-					 essentially unchanged. It was popularised in the 1960s with
-					  the release of Letraset sheets containing Lorem Ipsum 
-					  passages, and more recently with desktop publishing software 
-					  like Aldus PageMaker including versions of Lorem Ipsum.
-					  
-					 type specimen book. It has survived not only five centuries, 
-					 but also the leap into electronic typesetting, remaining 
-					 essentially unchanged. It was popularised in the 1960s with
-					  the release of Letraset sheets containing Lorem Ipsum 
-					  passages, and more recently with desktop publishing software 
-					  like Aldus PageMaker including versions of Lorem Ipsum.
+  
     <img class="thumbnail" src="Images/alaskatrail.jpeg" />
   </div>
 
@@ -71,19 +47,7 @@ const CategoryLayout = props =>
     <h3 class="panel-title"></h3>
   </div>
   <div class="panel-body">
-    type specimen book. It has survived not only five centuries, 
-					 but also the leap into electronic typesetting, remaining 
-					 essentially unchanged. It was popularised in the 1960s with
-					  the release of Letraset sheets containing Lorem Ipsum 
-					  passages, and more recently with desktop publishing software 
-					  like Aldus PageMaker including versions of Lorem Ipsum.
-
-					 type specimen book. It has survived not only five centuries, 
-					 but also the leap into electronic typesetting, remaining 
-					 essentially unchanged. It was popularised in the 1960s with
-					  the release of Letraset sheets containing Lorem Ipsum 
-					  passages, and more recently with desktop publishing software 
-					  like Aldus PageMaker including versions of Lorem Ipsum.
+   
     <img class="thumbnail" src="Images/lakeBlanche.jpeg" />
   </div>
 
