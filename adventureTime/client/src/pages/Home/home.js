@@ -262,11 +262,16 @@ class Home extends Component {
 
 	};
 
+	handleCategoryRedirect = () => {
+		sessionStorage.setItem('category', "");
+		window.location.href = '/categories/';
+	}
+
 	//always set our logged in state variables to our session variable
 	render() {
 		return (
 			<div>
-				<Nav>
+				<Nav handleCategoryRedirect = {this.handleCategoryRedirect}>
 				</Nav>
 
 				<HomeHeader 

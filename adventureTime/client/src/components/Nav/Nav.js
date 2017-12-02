@@ -24,7 +24,7 @@ const Nav = props =>
 
         <ul className="nav navbar-nav navbar-right">
 
-          <li className="dropdown"><a href="/categories">Ventures <span className="sr-only"></span></a>
+          <li className="dropdown"><a onClick={props.handleCategoryRedirect}>Ventures <span className="sr-only"></span></a>
           </li>
 
           <li className="dropdown"><a href="/user">Profile <span className="sr-only"></span></a>
