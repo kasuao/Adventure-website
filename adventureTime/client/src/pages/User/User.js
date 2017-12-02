@@ -295,6 +295,12 @@ the new post modal will not pop up (close the window).
     window.location.href = '/categories/';
   }
 
+  //redirect to the users profile page.
+  handleProfileRedirect = () => {
+    sessionStorage.setItem('otherProfile', "");
+    window.location.href = '/user/';
+  }
+
 /*
 modalAdventure: "",
     modalAdventurePic: "",
@@ -312,8 +318,8 @@ modalAdventure: "",
       <div>
         <Nav
           handlePostCreate={this.handlePostCreate}
-          handleCategoryRedirect = {this.handleCategoryRedirect}>
-        
+          handleCategoryRedirect = {this.handleCategoryRedirect}
+          handleProfileRedirect = {this.handleProfileRedirect}>
         </Nav>
         {/*Create a conditional to determine if the user is viewing their profile or somebody elses*/}
         
