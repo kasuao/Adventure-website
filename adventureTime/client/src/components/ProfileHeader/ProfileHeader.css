@@ -23,9 +23,9 @@ h4 {
 
 #profileName {
 	text-align: center;
-	color: white;
-	background-color: black;
-	border: 2px solid white;
+	color: black;
+	background-color: white;
+	border: 2px solid black;
   border-radius: 20px;
   width: 70%;
   margin-left: 120px;
@@ -34,10 +34,10 @@ h4 {
 
 #aboutMe {
 	text-align: center;
-	border: white solid 3px;
+	border: black solid 3px;
 	border-radius: 20px;
 	margin-bottom: 50px;
-	color: white;
+	color: black;
 }
 
 .progress {
@@ -47,10 +47,10 @@ h4 {
 #profile-info{
 	display: flex;
 	justify-content: center;
-	border: white solid 3px;
+	border: black solid 3px;
 	padding: 5 5 5 5;
-	background-color:black;
-	border: 3px solid white;
+	background-color:white;
+	border: 3px solid black;
   border-radius: 20px;
 
 }
@@ -58,18 +58,18 @@ h4 {
 
 #rating{
 
-		border: white solid 3px;
+		border: black solid 3px;
 		border-radius: 20px;
 		width: auto;
 		margin: auto;
 		margin-bottom: 20px;
-		color: white;
+		color: black;
 
 
 }
 
 .thumbnail {
-		border: white solid 5px;
+		border: black solid 3px;
 }
 
 .blog-post {
@@ -78,7 +78,7 @@ h4 {
 	flex-direction: column;
 	/*border: 10px solid black;*/
   border-radius: 20px;
-  background-color: black;
+  background-color: white;
 /*	border: black double 8px;*/
 
 }
@@ -88,7 +88,7 @@ h4 {
   width:100%;
   margin-top: 30px;
   border-radius: 20px;
-  color: white;
+  color: black;
 }
 #blogging{
 border-top: black solid 8px;
@@ -103,7 +103,7 @@ width: 100%;
 .postTitle{
 	cursor: pointer;
 	font-size: 36pt;
-	color:white;
+	color:black;
 	font-family: 'Bungee inline', cursive;
 
 }
