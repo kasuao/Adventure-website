@@ -1,3 +1,13 @@
+#root {
+	background:url("/Images/snowwhite.png") no-repeat center center fixed;
+	background-size: cover;
+
+}
+
+#background-container {
+	width:58%;
+}
+
 #profileTitle {
 	text-align: center;
 }
@@ -17,14 +27,22 @@
 }
 
 #profile-info{
+	display: flex;
+	justify-content: center;
 	border: black double 10px;
 	padding: 5 5 5 5;
+	background-color: white;
+
 }
 
 
 #rating{
 		border: black double 5px;
 		margin-top: 20px;
+		margin-right: 100px;
+		margin-bottom: 20px;
+		padding-right: 20px;
+		width:49%;
 
 
 }
@@ -37,6 +55,7 @@
 	display:flex;
 	justify-content: space-around;
 	flex-direction: column;
+/*	border: black double 8px;*/
 
 }
 #profPic {
@@ -56,4 +75,8 @@ width: 100%;
 }
 .postTitle{
 	cursor: pointer;
+	font-size: 36pt;
+	color:black;
+	font-family: 'Bungee inline', cursive;
+
 }

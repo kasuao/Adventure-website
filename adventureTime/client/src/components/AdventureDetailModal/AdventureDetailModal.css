@@ -10,7 +10,7 @@
 	box-shadow: 10px 10px 5px #888888;
 	border-radius: 10px;
 	margin-bottom: 50px;
-	font-size: 18pt;
+	font-size: 24pt;
 	font-family:'Rancho', cursive;
 	font-weight: bolder;
 	overflow: auto;
@@ -19,3 +19,11 @@
 #closeModal{
 	cursor: pointer;
 }
+
+#blogPostTitle {
+	font-size: 36pt;
+
+	font-family:'Bungee Shade', cursive;
+	
+}
+/*'Bungee Inline', cursive;'*/

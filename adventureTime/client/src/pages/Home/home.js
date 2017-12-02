@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import axios from "axios";
 //import the used components
+import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import HomeHeader from "../../components/HomeHeader";
 import CreateUserModal from "../../components/CreateUserModal";
@@ -239,18 +240,35 @@ class Home extends Component {
 		}, 1000);
 	};
 
-	// loadPage function will load the page of a category.
-	loadPage = () => {
+	// loadHiking function will load only the hiking posts of a category.
+	loadHiking = () => {
 		// alert("click is working");
 		sessionStorage.setItem('category', "Hiking");
 		window.location.href = '/categories/';
 
-	}
+	};
+
+	loadFishing = () => {
+		// alert("click is working");
+		sessionStorage.setItem('category', "Fishing");
+		window.location.href = '/categories/';
+
+	};
+
+	loadBiking = () => {
+		// alert("click is working");
+		sessionStorage.setItem('category', "Biking");
+		window.location.href = '/categories/';
+
+	};
 
 	//always set our logged in state variables to our session variable
 	render() {
 		return (
 			<div>
+				<Nav>
+				</Nav>
+
 				<HomeHeader 
 					handleUserCreate={this.handleUserCreate} 
 					handleUserLogin={this.handleUserLogin.bind(this)}
@@ -261,9 +279,9 @@ class Home extends Component {
 				<div className="quotes"><h2>Adventure is worth while itself</h2>
 				</div>
 				<div class="img-container">
-					<img onClick={this.loadPage} width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/>
-					<img width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
-					<img width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
+					<img onClick={this.loadHiking} width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/>
+					<img onClick={this.loadFishing} width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
+					<img onClick={this.loadBiking} width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
 				</div>
 				<Footer>
 				</Footer>

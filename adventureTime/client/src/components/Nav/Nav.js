@@ -6,32 +6,33 @@ const Nav = props =>
 
   <nav className="navbar navbar-inverse navbar-top">
     <div className="container-fluid">
+
+      {/* Toggle will be grouped in mobile */}
       <div className="navbar-header">
-        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> 
-          <span className="sr-only">Toggle navigation</span>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collpase-1" aria-expanded="false">
+          <span className="sr-only">Toggle Navigation</span>
           <span className="icon-bar"></span>
-          <span className="icon-bar"></span> 
-          <span className="icon-bar"></span> 
+          <span className="icon-bar"></span>
+          <span className="icon-bar"></span>
         </button>
-          <a href="/" className="navbar-brand">
-            Adventure Awaits
-          </a>
-      {/*nav bar header ending div */}
+
+        <a className="navbar-brand" href="/">Adventure Awaits</a>
       </div>
 
-      {/*nav links that will be toggled*/}
-      <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        
-        <ul className="nav navbar-nav navbar-right">
-          <li className="dropdown" id="post"><a onClick={props.handlePostCreate}>Post <span className="sr-only"></span></a></li>
-        </ul>
+      {/* Toggled content */}
+      <div className="collapse navbar-collapse" id="bs-example-navbar-collpase-1">
 
         <ul className="nav navbar-nav navbar-right">
-          <li className="dropdown"><a href="/user">Profile <span className="sr-only"></span></a></li>
-        </ul>
 
-        <ul className="nav navbar-nav navbar-right">
-          <li className="dropdown"><a href="/categories">Adventures <span className="sr-only"></span></a></li>
+          <li className="dropdown"><a href="/categories">Ventures <span className="sr-only"></span></a>
+          </li>
+
+          <li className="dropdown"><a href="/user">Profile <span className="sr-only"></span></a>
+          </li>
+
+          <li className="dropdown" id="post"><a onClick={props.handlePostCreate} >Post <span className="sr-only"></span></a>
+          </li>
+          
         </ul>
 
       </div>
@@ -39,5 +40,6 @@ const Nav = props =>
 
   </nav>
 
+        
 
 export default Nav;

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
+import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import AdventureHeader from "../../components/AdventureHeader";
-import CategoryLayout from "../../components/CategoryLayout";
+// import CategoryLayout from "../../components/CategoryLayout";
 import BodyCategory from "../../components/BodyCategory";
 import AdventureDetailModal from "../../components/AdventureDetailModal";
 import "./categories.css";
@@ -51,19 +53,23 @@ class Categories extends Component {
     // if a category is specified...
     if (sessionStorage.getItem('category') !== null && sessionStorage.getItem('category') !== "") {
       // use this API.js function that filters by the category property.
-      API.getAdventureCategory()
-      .then(res =>{
+      API.getAdventures()
+    .then(res =>{ 
       let tempArray = [];
       for (var i = 0; i < res.data.length; i++) {
-        tempArray.push(res.data[i]);
+        if(res.data[i].category === sessionStorage.getItem('category')){
+          tempArray.push(res.data[i]);
+        }
       }
-      this.setState({
+      console.log(tempArray);
+      this.setState({ 
         adventures: tempArray
       })
+      
       console.log(res);
       console.log(this.state.adventures);
       console.log(this.state.adventures[0].adventure);
-    })
+      })
       .catch(err => console.log(err));
     }else{
       API.getAdventures()
@@ -140,13 +146,14 @@ class Categories extends Component {
 	render() {
 		return(
 			<div>
+
+      <Nav>
+      </Nav>
 	
 			<AdventureHeader>
       </AdventureHeader>
 
-			<CategoryLayout age="50" tagline=""
 		
-			/>
 
 			<BodyCategory
         handleBlogClick={this.handleBlogClick}
