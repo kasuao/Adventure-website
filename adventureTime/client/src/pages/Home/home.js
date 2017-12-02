@@ -182,6 +182,14 @@ class Home extends Component {
       	console.log(err);
     	});
 
+
+    	//set a timout function to ensure the program has finished before moving forward to the next page.
+    	setTimeout(function(){
+		    if(sessionStorage.getItem('loggedIn') == "true"){
+		    	window.location.href = '/user';
+		    }
+			}, 1000);
+
 	};
 
 	/*
@@ -231,6 +239,13 @@ class Home extends Component {
 		}, 1000);
 	};
 
+	// loadPage function will load the page of a category.
+	loadPage = () => {
+		// alert("click is working");
+		sessionStorage.setItem('category', "Hiking");
+		window.location.href = '/categories/';
+
+	}
 
 	//always set our logged in state variables to our session variable
 	render() {
@@ -246,7 +261,7 @@ class Home extends Component {
 				<div className="quotes"><h2>Adventure is worth while itself</h2>
 				</div>
 				<div class="img-container">
-					<Link to={"../adventures/category/Hiking"}><img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/></Link>
+					<img onClick={this.loadPage} width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/>
 					<img width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
 					<img width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
 				</div>

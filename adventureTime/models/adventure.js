@@ -10,6 +10,7 @@ const adventureSchema = new Schema({
   enjoymentLevel: { type: String, required: true },
   adventurePic: { type: String, required: true },
   description: { type: String, required: true },
+  category: {type: String, required: true },
   // funRating: { type: Number, required: true },
   // diffRating: { type: Number, required: true }
   date: { type: Date, default: Date.now }
