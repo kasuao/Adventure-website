@@ -6,7 +6,7 @@ const ProfileHeader = props =>
 <div id="background-container" className="container">
 
   <div className="profileHeader">
-    <h1 id="profileTitle">PROFILE PAGE</h1>
+    <h1 id="profileTitle">PROFILE</h1>
 
     <div>
         <h2 id="profileName">{props.userName}</h2>

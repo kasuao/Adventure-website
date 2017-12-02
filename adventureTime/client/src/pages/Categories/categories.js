@@ -148,6 +148,10 @@ class Categories extends Component {
     //sessionStorage.setItem('otherProfile', this.state.modalEmail);
     //window.location.href = '/user/';
   }
+  handleCategoryRedirect = () => {
+    sessionStorage.setItem('category', "");
+    window.location.href = '/categories/';
+  }
 
 	
 	
@@ -155,8 +159,8 @@ class Categories extends Component {
 		return(
 			<div>
 
-      <Nav>
-      </Nav>
+      <Nav handleCategoryRedirect = {this.handleCategoryRedirect}>
+        </Nav>
 	
 			<AdventureHeader>
       </AdventureHeader>

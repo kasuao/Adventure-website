@@ -264,11 +264,10 @@ class Home extends Component {
 	};
 
 	//redirect to the category page and set our category session storage to blank
-	handleCategoryRedirect = () =>{
+	handleCategoryRedirect = () => {
 		sessionStorage.setItem('category', "");
 		window.location.href = '/categories/';
 	}
-
 
 	//always set our logged in state variables to our session variable
 	render() {

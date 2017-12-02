@@ -21,7 +21,7 @@ const AdventureDetailModal = props =>
 
 			<div className="row">
 	    	<div className="col-md-7">
-					<img className="thumbnail" src={props.modalAdventurePic} width='100%' mode='fit'/>
+					<img id= "postBlogPic"className="thumbnail" src={props.modalAdventurePic} width='100%' mode='fit'/>
 				</div>
 				<div className="col-md-5">
 					<h4>Landscape Level</h4>
