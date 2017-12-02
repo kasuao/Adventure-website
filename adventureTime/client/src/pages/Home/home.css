@@ -1,21 +1,36 @@
+.homeHeader {
+	background-color: white;
+/*	border-top: black solid 20px;*/
+	border: black solid 20px;
+	margin-top: -20px;
+}
+
+
 #homePic{
 	max-height: 450px;
-	border:black solid 5px;
+	/*border:black solid 20px;*/
 	padding:3px;
+	border-right:black solid 20px;
+	border-left: black solid 20px;
 }
 
 .img-container {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	width:90%;
-	margin:0 auto;
+	width:100%;
+	margin-top: -107px;
+	margin-bottom: -5px;
+	background-color: white;
+	/*border-bottom: black solid 20px;*/
+	border: black solid 20px;
 }
 .img-container img {
 	margin:100px;
 	border:black solid 5px;
 	padding:3px;
 }
+
 
 	.input-field {
 		font-size: 20pt;

@@ -1,9 +1,20 @@
 .navbar {
 	background-color: #515151; 
 	border-radius: 0;
-	font-family: 'Bungee Inline', cursive;
+	font-family:'Rancho', cursive;
+	font-size: 32pt;
 }
 
 .navbar-inverse .navbar-brand {
-	color: white;
+
+	font-size: 20pt;
+	font-family: 'Bungee Inline', cursive;
+}
+
+.navbar-nav {
+	background-color: #515151;
+}
+
+nav ul a {
+	font-size: .75em;
 }

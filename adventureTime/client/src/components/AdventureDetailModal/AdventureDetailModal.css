@@ -1,0 +1,45 @@
+#adventureDisplay{
+	color:black;
+	position: fixed;
+	border: solid black 5px;
+	background-color: white;
+	top:50px;
+	left:10%;
+	right:10%;
+	bottom:50px;
+	box-shadow: 10px 10px 5px #888888;
+	border-radius: 10px;
+	margin-bottom: 50px;
+	font-size: 24pt;
+	font-family:'Rancho', cursive;
+	font-weight: bolder;
+	overflow: auto;
+}
+
+.col-md-5 {
+	border: black solid 3px;
+	  border-radius: 20px;
+
+}
+#postBlogPic {
+	border: black solid 3px;
+	 border-radius: 20px;
+}
+#closeModal{
+	cursor: pointer;
+}
+
+#blogPostTitle {
+	font-size: 36pt;
+
+	font-family:'Bungee Shade', cursive;
+	
+}
+
+#adventureDetailInfo {
+	border: black solid 3px;
+  border-radius: 10px;
+
+
+}
+/*'Bungee Inline', cursive;'*/

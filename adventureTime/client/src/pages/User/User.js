@@ -7,6 +7,8 @@ import { Col, Row, Container } from "../../components/Grid";
 import ProfileHeader from "../../components/ProfileHeader";
 import Nav from "../../components/Nav";
 import PostAdvModal from "../../components/PostAdvModal";
+import AdventureDetailModal from "../../components/AdventureDetailModal";
+
 
 // access the api and change the state
 class User extends Component {
@@ -20,11 +22,13 @@ class User extends Component {
 
     // Store info being sent to the DB here
     adventure: "",
-    difficultyLevel: "",
-    landscapeLevel: "",
-    funLevel: "",
+    difficultyLevel: "1",
+    landscapeLevel: "1",
+    funLevel: "1",
+    enjoymentLevel: "1",
     adventurePic: "",
     description: "",
+    category: "Hiking",
 
     // data to populate the site
     user: {},
@@ -41,49 +45,77 @@ class User extends Component {
       "difficultyLevel" : "",
       "landscapeLevel" : "",
       "funLevel" : "",
+      "enjoymentLevel" : "",
       "adventurePic": "",
       "description" : "",
       "_id": ""
       }
     ],
-
-    profileImage: "http://www.quistic.com/wp-content/uploads/2014/11/quistic-Large-Course-Images-500-x-300.jpg",
-    bio: "Adventure is all about taking each experience, regardless if you know the outcome or not and facing it head on. It is about seeing the world from a different perspective, even if you’ve seen it a million times before. It is choosing to see the beauty from the ordinary and finding ways on how to do it differently."
-
+    DispAdventureModal: 0,
+    adventureModalData: [{}],
+    
+    //adventure modal information:
+    modalAdventure: "",
+    modalAdventurePic: "",
+    modalDate: "",
+    modalDescription: "",
+    modalDifficultyLevel: "",
+    modalFunLevel: "",
+    modalLandscapeLevel: "",
+    modalUserName: "",
+    modalEmail: ""
   };
   /*
     This function will run whenever the component mounts to the page.
   */
   componentDidMount(){
+    if(sessionStorage.getItem('loggedIn') == "false" || sessionStorage.getItem('loggedIn') == null || sessionStorage.getItem('loggedIn') == ""){
+      window.location.href = '/';
+    };
     this.getData();
     // this.popData();
   }
 
   // This function will receive user information from our database based on a unique email.
   getData = event => {
-    API.getUser(sessionStorage.getItem('email'))
-      .then(res =>{ this.setState({ 
-          userName: res.data.userName,
-          firstName: res.data.firstName,
-          lastName: res.data.lastName,
-          profilePic: res.data.profilePic,
-          about: res.data.about,
-          adventureLevel: res.data.adventureLevel
+    if(sessionStorage.getItem('otherProfile') !== "" && sessionStorage.getItem('otherProfile') !== null){
+      API.getUser(sessionStorage.getItem('otherProfile'))
+        .then(res =>{ this.setState({ 
+            userName: res.data.userName,
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+            profilePic: res.data.profilePic,
+            about: res.data.about,
+            adventureLevel: res.data.adventureLevel
+          })
+        console.log(res);
         })
-      console.log(res);
-      })
-      .catch(err => console.log(err));
-      API.getAdventures()
-      .then(res =>{ 
-        let tempArray = [];
-        for (var i = 0; i < res.data.length; i++) {
-          if(res.data[i].userName === sessionStorage.getItem('userName')){
-            tempArray.push(res.data[i]);
-          }
+        .catch(err => console.log(err));
+      } else {
+      API.getUser(sessionStorage.getItem('email'))
+        .then(res =>{ this.setState({ 
+            userName: res.data.userName,
+            firstName: res.data.firstName,
+            lastName: res.data.lastName,
+            profilePic: res.data.profilePic,
+            about: res.data.about,
+            adventureLevel: res.data.adventureLevel
+          })
+        console.log(res);
+        })
+        .catch(err => console.log(err));
+      }
+    API.getAdventures()
+    .then(res =>{ 
+      let tempArray = [];
+      for (var i = 0; i < res.data.length; i++) {
+        if(res.data[i].userName === sessionStorage.getItem('userName')){
+          tempArray.push(res.data[i]);
         }
-        this.setState({ 
-          adventures: tempArray
-        })
+      }
+      this.setState({ 
+        adventures: tempArray
+      })
 
       console.log(res);
       console.log(this.state.adventures);
@@ -102,9 +134,7 @@ there will be a modal popup prompting the user to post their adventure.
 */
 
   handlePostCreate = () => {
-
     this.setState({
-
       createPost: true
     })
     
@@ -147,7 +177,7 @@ the new post modal will not pop up (close the window).
   handleFormChange = (event) =>{
     var stateObject = function() {
       let dynamicStateChange = {};
-      dynamicStateChange[this.target.name] = this.target.value;
+        dynamicStateChange[this.target.name] = this.target.value;
        return dynamicStateChange;
     }.bind(event)();
     this.setState(stateObject);
@@ -162,10 +192,13 @@ the new post modal will not pop up (close the window).
     //set temporary variables to the current state variables to be used inside the function scope.
     //this should all be handled by state variables, but due to a time crunch we went with session variables to avoid redux. Future iterations should use Redux however.
     const tempUserName = sessionStorage.getItem('userName');
+    const tempEmail = sessionStorage.getItem('email');
     const tempAdventure = this.state.adventure;
+    const tempCategory = this.state.category;
     const tempDifficultyLevel = this.state.difficultyLevel * 10;
     const tempLandscapeLevel = this.state.landscapeLevel * 10;
     const tempFunLevel = this.state.funLevel * 10;
+    const tempEnjoymentLevel = this.state.enjoymentLevel * 10;
     const tempDescription = this.state.description;
 
     //send a call to the cloudinary API to post a new user picture.
@@ -181,15 +214,18 @@ the new post modal will not pop up (close the window).
         //after the axios call has been made, send our data to the database.
         API.saveAdventure({
           "userName" : tempUserName,
+          "email" : tempEmail,
           "adventure" : tempAdventure,
+          "category" : tempCategory,
           "difficultyLevel" : tempDifficultyLevel,
           "landscapeLevel" : tempLandscapeLevel,
           "funLevel" : tempFunLevel,
+          "enjoymentLevel" : tempEnjoymentLevel,
           "adventurePic": "https://res.cloudinary.com/copilot28/image/upload/a_exif/" + res.data.public_id + ".jpeg",
-          "description" : tempDescription,
+          "description" : tempDescription
         })
         console.log("submitted");
-        this.closePostCreate();
+        window.location.reload();
       }).catch(function(err){
         console.log("Error:");
         console.log(err);
@@ -197,37 +233,90 @@ the new post modal will not pop up (close the window).
 
   };
 
-  handleBlogClick = () => {
-    //alert("clicked");
+
+  /*
+    This function will run whenever the user clicks on a post. The idea is to change a state that will
+    bring up a modal of the adventure and display additional adventure information.
+  */
+  handleBlogClick = event => {
+    let id = event.target.getAttribute("name");
+    console.log(event.target.getAttribute("name"));
+    this.setState({
+      DispAdventureModal: 1
+    });
+    //make a call to the database to recieve the adventures.
+      API.getAdventures()
+        .then(res => {
+          for (var i = 0; i < res.data.length; i++) {
+            //if our clicked post's id matches one in the database, trigger a function to populate the state variables.
+            if(res.data[i]._id == id){
+              return this.modalData(res.data[i]);
+            }
+          }
+          //this.setState({ adventureModalData: res.data })
+          
+        })
+        .catch(err => console.log(err));
+    };
+
+  /*
+    Set the state variables pertaining to the adventure modal.
+  */
+  modalData = data => {
+    this.setState({
+      modalAdventure: data.adventure,
+      modalAdventurePic: data.adventurePic,
+      modalDate: data.date,
+      modalDescription: data.description,
+      modalDifficultyLevel: data.difficultyLevel,
+      modalFunLevel: data.funLevel,
+      modalLandscapeLevel: data.landscapeLevel,
+      modalUserName: data.userName,
+      modalEmail: data.email
+    });
   };
 
-    // // this function pushes data to the server. 
-    // popData = test =>{
-    //   API.saveUser({
-    //   "firstName" : "Lara",
-    //   "lastName" : "Croft",
-    //   "email" : "laracroft@tombraider.com",
-    //   "password" : "password",
-    //   "about" : "she is a woman who travels the world in search of forgotten artifacts and locations, frequently connected to supernatural powers.She is the only daughter and heir of the aristocratic Croft family. She is intelligent, athletic, elegant, fluent in multiple languages, and determined to fulfill her own goals at any cost. She has brown eyes and brown hair mostly worn in a braid or ponytail. ",
-    //   "adventureLevel" : 10
-    //   })
-    //   .then(res => console.log(res))
-    // }
+  //When selected this function will close the adventure detail modal
+  closeAdventureDetailModal = () =>{
+    this.setState({
+      DispAdventureModal: 0
+    });
+  };
 
+  //Save to a session variable a different profile the user wants to view.
+  loadOtherProfile = (event) => {
+    //sessionStorage.setItem('otherProfile', event.target.getAttribute("name"));
+    //console.log(event.target.getAttribute("name"));
+    //window.location.href = '/user/';
+  }
 
+  handleCategoryRedirect = () => {
+    sessionStorage.setItem('category', "");
+    window.location.href = '/categories/';
+  }
 
+/*
+modalAdventure: "",
+    modalAdventurePic: "",
+    modalDate: "",
+    modalDescription: "",
+    modalDifficultyLevel: "",
+    modalFunLevel: "",
+    modalLandscapeLevel: "",
+    modalUserName: ""
+*/
   
   render() {
     return (
 
       <div>
-
         <Nav
-          handlePostCreate={this.handlePostCreate}>
+          handlePostCreate={this.handlePostCreate}
+          handleCategoryRedirect = {this.handleCategoryRedirect}>
         
         </Nav>
         {/*Create a conditional to determine if the user is viewing their profile or somebody elses*/}
-        {sessionStorage.getItem('viewOtherUser') ?
+        
         <ProfileHeader
           userName={this.state.userName}
           /*profileName={this.state.profileImage}*/
@@ -238,18 +327,7 @@ the new post modal will not pop up (close the window).
           handleBlogClick={this.handleBlogClick}
           >
         </ProfileHeader>
-        :
-        <ProfileHeader
-          userName={this.state.userName}
-          /*profileName={this.state.profileImage}*/
-          profileImage={this.state.profilePic}
-          bio={this.state.about}
-          adventureLevel={this.state.adventureLevel}
-          adventures={this.state.adventures}
-          handleBlogClick={this.handleBlogClick}
-          >
-        </ProfileHeader>
-        }
+        
         {this.state.createPost ? 
           <PostAdvModal 
             handleFormChange={this.handleFormChange}
@@ -260,6 +338,20 @@ the new post modal will not pop up (close the window).
           </PostAdvModal>
         : ""}
 
+        {this.state.DispAdventureModal ? 
+          <AdventureDetailModal 
+            modalUserName={this.state.modalUserName}
+            modalAdventurePic={this.state.modalAdventurePic}
+            modalLandscapeLevel={this.state.modalLandscapeLevel}
+            modalFunLevel={this.state.modalFunLevel}
+            modalDifficultyLevel={this.state.modalDifficultyLevel}
+            modalAdventure={this.state.modalAdventure}
+            modalDescription={this.state.modalDescription}
+            modalDate={this.state.modalDate}
+            closeAdventureDetailModal={this.closeAdventureDetailModal}
+            loadOtherProfile={this.loadOtherProfile}>
+          </AdventureDetailModal>
+        : ""}
 
       </div>
 

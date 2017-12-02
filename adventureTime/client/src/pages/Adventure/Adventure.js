@@ -25,6 +25,7 @@ class Adventure extends Component {
         <div>
           <h1>{this.state.adventure.category}</h1>
           <h1>{this.state.adventure.title}</h1>
+          <h3>{this.state.adventure.use}</h3>
           <h2>Description: </h2>
           <p>{this.state.adventure.description}</p>
           <h2>Directions: </h2>

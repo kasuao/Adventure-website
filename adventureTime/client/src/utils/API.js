@@ -10,6 +10,11 @@ export default {
     return axios.get("/api/adventures/" + id);
 
   },
+
+    getAdventureCategory: function(category) {
+    return axios.get("/api/adventures/category" + category);
+
+  },
   // Deletes the adventure with the given id
   deleteAdventure: function(id) {
     return axios.delete("/api/adventures/" + id);

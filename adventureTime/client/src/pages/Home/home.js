@@ -3,6 +3,7 @@ import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import axios from "axios";
 //import the used components
+import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import HomeHeader from "../../components/HomeHeader";
 import CreateUserModal from "../../components/CreateUserModal";
@@ -162,9 +163,15 @@ class Home extends Component {
 						sessionStorage.setItem('about', tempAbout);
 						sessionStorage.setItem('adventureLevel', tempAdventureLevel);
 						sessionStorage.setItem('viewOtherUser', 0);
+						sessionStorage.setItem('otherProfile', "");
+						//set a timout function to ensure the program has finished before moving forward to the next page.
+					  if(sessionStorage.getItem('loggedIn') == "true"){
+			    		setTimeout(function(){
+					    	window.location.href = '/user';
+							}, 1000);
+					  }
 					}).catch(function(err){
 						console.log(err);
-						alert("error");
 						sessionStorage.setItem('userName', "");
 						sessionStorage.setItem('loggedIn', "false");
 					});
@@ -173,8 +180,11 @@ class Home extends Component {
       .catch(function(err)  {
       	sessionStorage.setItem('userName', "");
 				sessionStorage.setItem('loggedIn', "false");
+				alert("error");
       	console.log(err);
     	});
+
+
     	//set a timout function to ensure the program has finished before moving forward to the next page.
     	setTimeout(function(){
 		    if(sessionStorage.getItem('loggedIn') == "true"){
@@ -190,9 +200,11 @@ class Home extends Component {
 		If the information is correct, update the global state variables with the user information to be used on other pages.
 	*/
 	handleUserLogin = () => {
+		// alert("hey");
 		API.getUser(document.getElementById("inputEmail").value)
 		.then(function(res) {
 			console.log(res);
+			
 			if(res.data){
 				if(res.data.email === document.getElementById("inputEmail").value && res.data.password === document.getElementById("inputPassword").value){
 						//set up session variables to save the unique username and user information to be used throughout the application.
@@ -229,11 +241,42 @@ class Home extends Component {
 		}, 1000);
 	};
 
+	// loadHiking function will load only the hiking posts of a category.
+	loadHiking = () => {
+		// alert("click is working");
+		sessionStorage.setItem('category', "Hiking");
+		window.location.href = '/categories/';
+
+	};
+
+	loadFishing = () => {
+		// alert("click is working");
+		sessionStorage.setItem('category', "Fishing");
+		window.location.href = '/categories/';
+
+	};
+
+	loadBiking = () => {
+		// alert("click is working");
+		sessionStorage.setItem('category', "Biking");
+		window.location.href = '/categories/';
+
+	};
+
+	//redirect to the category page and set our category session storage to blank
+	handleCategoryRedirect = () => {
+		sessionStorage.setItem('category', "");
+		window.location.href = '/categories/';
+	}
 
 	//always set our logged in state variables to our session variable
 	render() {
 		return (
 			<div>
+				<Nav
+					handleCategoryRedirect={this.handleCategoryRedirect}>
+				</Nav>
+
 				<HomeHeader 
 					handleUserCreate={this.handleUserCreate} 
 					handleUserLogin={this.handleUserLogin.bind(this)}
@@ -241,10 +284,12 @@ class Home extends Component {
 				</HomeHeader>
 				<img id="homePic" width="100%" margin="20px" src={'Images/adventure.jpeg'} alt="Broken Image" className="img-responsive"
 				/>
+				<div className="quotes"><h2>Adventure is worth while itself</h2>
+				</div>
 				<div class="img-container">
-					<Link to={"../Adventure/"}><img width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/></Link>
-					<img width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
-					<img width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
+					<img onClick={this.loadHiking} width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/>
+					<img onClick={this.loadFishing} width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
+					<img onClick={this.loadBiking} width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
 				</div>
 				<Footer>
 				</Footer>
