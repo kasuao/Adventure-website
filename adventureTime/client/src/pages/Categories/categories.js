@@ -149,17 +149,18 @@ class Categories extends Component {
     window.location.href = '/user/';
   };
 
+  //This function will run when the Ventures button is selected.
   handleCategoryRedirect = () => {
     sessionStorage.setItem('category', "");
     window.location.href = '/categories/';
   }
 
+  //redirect to the user page. ensure that the 'view other user' session variable is left unmarked.
   handleProfileRedirect = () => {
     sessionStorage.setItem('otherProfile', "");
-    window.location.href = '/user/';
-  }
-	
-	
+    window.location.href = '/User/';
+  };
+
 	render() {
 		return(
 			<div>
@@ -198,7 +199,7 @@ class Categories extends Component {
 
 			</div>
 		
-			);
+		);
 	}
 }
 

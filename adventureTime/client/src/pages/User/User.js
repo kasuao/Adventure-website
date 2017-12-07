@@ -260,7 +260,7 @@ the new post modal will not pop up (close the window).
     };
 
   /*
-    Set the state variables pertaining to the adventure modal.
+    Set the state variables pertaining to the adventure modal currently being selected.
   */
   modalData = data => {
     this.setState({
@@ -291,15 +291,16 @@ the new post modal will not pop up (close the window).
   }
 
   handleCategoryRedirect = () => {
+    sessionStorage.setItem('otherProfile', this.state.modalEmail);
     sessionStorage.setItem('category', "");
     window.location.href = '/categories/';
   }
 
-  //redirect to the users profile page.
+  //redirect to the user page. ensure that the 'view other user' session variable is left unmarked.
   handleProfileRedirect = () => {
     sessionStorage.setItem('otherProfile', "");
     window.location.href = '/user/';
-  }
+  };
 
 /*
 modalAdventure: "",

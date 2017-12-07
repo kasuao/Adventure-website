@@ -269,11 +269,11 @@ class Home extends Component {
 		window.location.href = '/categories/';
 	};
 
-	//redirect to the users profile page.
+	//redirect to the user page. ensure that the 'view other user' session variable is left unmarked.
 	handleProfileRedirect = () => {
-    sessionStorage.setItem('otherProfile', "");
-    window.location.href = '/user/';
-  }
+		sessionStorage.setItem('otherProfile', "");
+		window.location.href = '/user/';
+	};
 
 	//always set our logged in state variables to our session variable
 	render() {
