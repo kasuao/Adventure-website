@@ -109,7 +109,8 @@ class User extends Component {
     .then(res =>{ 
       let tempArray = [];
       for (var i = 0; i < res.data.length; i++) {
-        if(res.data[i].userName === sessionStorage.getItem('userName')){
+  // NEED TO ADD CODE TO CHECK FOR VIEWING ANOTHER PROFILE!!!!!!!
+        if(res.data[i].userName === this.state.userName){
           tempArray.push(res.data[i]);
         }
       }
