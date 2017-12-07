@@ -27,7 +27,7 @@ const Nav = props =>
           <li className="dropdown"><a onClick={props.handleCategoryRedirect}>Ventures <span className="sr-only"></span></a>
           </li>
 
-          <li className="dropdown"><a href="/user">Profile <span className="sr-only"></span></a>
+          <li className="dropdown"><a onClick={props.handleProfileRedirect}>Profile <span className="sr-only"></span></a>
           </li>
 
           <li className="dropdown" id="post"><a onClick={props.handlePostCreate} >Post <span className="sr-only"></span></a>

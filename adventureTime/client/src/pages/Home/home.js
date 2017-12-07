@@ -267,14 +267,21 @@ class Home extends Component {
 	handleCategoryRedirect = () => {
 		sessionStorage.setItem('category', "");
 		window.location.href = '/categories/';
-	}
+	};
+
+	//redirect to the user page. ensure that the 'view other user' session variable is left unmarked.
+	handleProfileRedirect = () => {
+		sessionStorage.setItem('otherProfile', "");
+		window.location.href = '/User/';
+	};
 
 	//always set our logged in state variables to our session variable
 	render() {
 		return (
 			<div>
 				<Nav
-					handleCategoryRedirect={this.handleCategoryRedirect}>
+					handleCategoryRedirect={this.handleCategoryRedirect}
+					handleProfileRedirect={this.handleProfileRedirect}>
 				</Nav>
 
 				<HomeHeader 

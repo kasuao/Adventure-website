@@ -145,22 +145,31 @@ class Categories extends Component {
 
   //visit another users profile page when the username is selected in the modal view.
   loadOtherProfile = (event) => {
-    //sessionStorage.setItem('otherProfile', this.state.modalEmail);
-    //window.location.href = '/user/';
+    sessionStorage.setItem('otherProfile', this.state.modalEmail);
+    window.location.href = '/user/';
   }
+
+  //This function will run when the Ventures button is selected.
   handleCategoryRedirect = () => {
     sessionStorage.setItem('category', "");
     window.location.href = '/categories/';
   }
 
+  //redirect to the user page. ensure that the 'view other user' session variable is left unmarked.
+  handleProfileRedirect = () => {
+    sessionStorage.setItem('otherProfile', "");
+    window.location.href = '/User/';
+  };
 	
 	
 	render() {
 		return(
 			<div>
 
-      <Nav handleCategoryRedirect = {this.handleCategoryRedirect}>
-        </Nav>
+      <Nav 
+        handleCategoryRedirect = {this.handleCategoryRedirect}
+        handleProfileRedirect = {this.handleProfileRedirect}>
+      </Nav>
 	
 			<AdventureHeader>
       </AdventureHeader>
@@ -191,7 +200,7 @@ class Categories extends Component {
 
 			</div>
 		
-			);
+		);
 	}
 }
 
