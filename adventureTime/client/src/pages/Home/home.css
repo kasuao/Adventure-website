@@ -38,3 +38,6 @@
 		flex-flow: top;
 	/*	margin-top: -4em;*/
 	}
+.categoryPic:hover {
+	border-color:yellow;
+}

@@ -272,7 +272,7 @@ class Home extends Component {
 	//redirect to the user page. ensure that the 'view other user' session variable is left unmarked.
 	handleProfileRedirect = () => {
 		sessionStorage.setItem('otherProfile', "");
-		window.location.href = '/User/';
+		window.location.href = '/user/';
 	};
 
 	//always set our logged in state variables to our session variable
@@ -281,7 +281,7 @@ class Home extends Component {
 			<div>
 				<Nav
 					handleCategoryRedirect={this.handleCategoryRedirect}
-					handleProfileRedirect={this.handleProfileRedirect}>
+					handleProfileRedirect = {this.handleProfileRedirect}>
 				</Nav>
 
 				<HomeHeader 

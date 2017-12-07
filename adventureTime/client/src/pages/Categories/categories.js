@@ -147,7 +147,7 @@ class Categories extends Component {
   loadOtherProfile = (event) => {
     sessionStorage.setItem('otherProfile', this.state.modalEmail);
     window.location.href = '/user/';
-  }
+  };
 
   //This function will run when the Ventures button is selected.
   handleCategoryRedirect = () => {
@@ -160,8 +160,7 @@ class Categories extends Component {
     sessionStorage.setItem('otherProfile', "");
     window.location.href = '/User/';
   };
-	
-	
+
 	render() {
 		return(
 			<div>

@@ -299,7 +299,7 @@ the new post modal will not pop up (close the window).
   //redirect to the user page. ensure that the 'view other user' session variable is left unmarked.
   handleProfileRedirect = () => {
     sessionStorage.setItem('otherProfile', "");
-    window.location.href = '/User/';
+    window.location.href = '/user/';
   };
 
 /*
@@ -321,7 +321,6 @@ modalAdventure: "",
           handlePostCreate={this.handlePostCreate}
           handleCategoryRedirect = {this.handleCategoryRedirect}
           handleProfileRedirect = {this.handleProfileRedirect}>
-        
         </Nav>
         {/*Create a conditional to determine if the user is viewing their profile or somebody elses*/}
         
