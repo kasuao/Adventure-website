@@ -153,7 +153,7 @@ class Categories extends Component {
   handleCategoryRedirect = () => {
     sessionStorage.setItem('category', "");
     window.location.href = '/categories/';
-  }
+  };
 
   //redirect to the user page. ensure that the 'view other user' session variable is left unmarked.
   handleProfileRedirect = () => {
