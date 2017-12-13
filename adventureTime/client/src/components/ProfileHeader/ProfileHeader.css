@@ -95,8 +95,8 @@ border-top: black solid 8px;
 width: 100%;
 }
 .postPic{
-	max-height: 500px;
-	width:100%;
+	max-width:100%;
+	max-height: 800px;
 	border:white solid 3px;
 	border-radius: 20px;
 }

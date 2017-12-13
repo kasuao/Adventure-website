@@ -38,6 +38,7 @@
 		flex-flow: top;
 	/*	margin-top: -4em;*/
 	}
-.categoryPic:hover {
-	border-color:yellow;
+#categoryPic:hover {
+	border-color:#42f4e8;
+	cursor:pointer;
 }

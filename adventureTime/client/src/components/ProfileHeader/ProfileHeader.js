@@ -53,10 +53,6 @@ const ProfileHeader = props =>
       {/* col medium 8 ending div */}
       </div>
 
-     
-
-      
-          
         </div>
       </div>
 
@@ -79,7 +75,7 @@ const ProfileHeader = props =>
               <div className="row">
                 <div className="col-md-1">
                 </div>
-                <div className="col-md-10">
+                <div className="col-md-10 center">
                   <img className="postPic" src={result.adventurePic} />
                 </div>
               </div>

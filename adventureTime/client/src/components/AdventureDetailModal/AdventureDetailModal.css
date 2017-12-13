@@ -39,7 +39,10 @@
 #adventureDetailInfo {
 	border: black solid 3px;
   border-radius: 10px;
+}
 
-
+#modalUserName:hover {
+	cursor:pointer;
+	color: #42f4e8;
 }
 /*'Bungee Inline', cursive;'*/

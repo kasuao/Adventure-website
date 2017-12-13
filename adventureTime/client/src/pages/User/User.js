@@ -8,6 +8,7 @@ import ProfileHeader from "../../components/ProfileHeader";
 import Nav from "../../components/Nav";
 import PostAdvModal from "../../components/PostAdvModal";
 import AdventureDetailModal from "../../components/AdventureDetailModal";
+import "./user.css";
 
 
 // access the api and change the state
@@ -32,7 +33,7 @@ class User extends Component {
 
     // data to populate the site
     user: {},
-    userName: "Jeff Loomis",
+    userName: "Error loading page",
     firstName: "",
     lastName: "",
     profilePic: "",
@@ -53,6 +54,7 @@ class User extends Component {
     ],
     DispAdventureModal: 0,
     adventureModalData: [{}],
+    displayLoader: 0,
     
     //adventure modal information:
     modalAdventure: "",
@@ -109,7 +111,6 @@ class User extends Component {
     .then(res =>{ 
       let tempArray = [];
       for (var i = 0; i < res.data.length; i++) {
-  // NEED TO ADD CODE TO CHECK FOR VIEWING ANOTHER PROFILE!!!!!!!
         if(res.data[i].userName === this.state.userName){
           tempArray.push(res.data[i]);
         }
@@ -157,16 +158,18 @@ the new post modal will not pop up (close the window).
   //const fileUpload = document.getElementById('file-upload');
 
   uploadPic = (event) => {
-    const file = event.target.files[0];
-    const formData = new FormData();
-    const cloudinary_url = "https://api.cloudinary.com/v1_1/copilot28/upload";
-    const cloudinary_upload_preset = "ugswizji";
-    formData.append('file', file);
-    formData.append('upload_preset', cloudinary_upload_preset);
-    this.setState({
-      pictureToUpload: file,
-      uploadPictureData: formData
-    })
+    if(event.target.files[0] !== null || event.target.files[0] != ""){
+      const file = event.target.files[0];
+      const formData = new FormData();
+      const cloudinary_url = "https://api.cloudinary.com/v1_1/copilot28/upload";
+      const cloudinary_upload_preset = "ugswizji";
+      formData.append('file', file);
+      formData.append('upload_preset', cloudinary_upload_preset);
+      this.setState({
+        pictureToUpload: file,
+        uploadPictureData: formData
+      })
+    }
 
   };
 
@@ -201,15 +204,20 @@ the new post modal will not pop up (close the window).
     const tempFunLevel = this.state.funLevel * 10;
     const tempEnjoymentLevel = this.state.enjoymentLevel * 10;
     const tempDescription = this.state.description;
-
-    //send a call to the cloudinary API to post a new user picture.
-    axios({
-      url: this.state.cloudinary_url,
-      method: "post",
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      data: this.state.uploadPictureData
+    if(tempUserName === "" || tempEmail === "" || tempCategory === "" || tempDifficultyLevel === "" || tempLandscapeLevel === "" || tempFunLevel === "" || tempEnjoymentLevel === "" || tempDescription === "" || this.state.uploadPictureData === ""){
+      alert("Please fill out all information before submitting the new post");
+    } else{
+      this.setState({
+        DisplayLoader: 1
+      });
+      //send a call to the cloudinary API to post a new user picture.
+      axios({
+        url: this.state.cloudinary_url,
+        method: "post",
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: this.state.uploadPictureData
       }).then(function(res){
         console.log(res);
         //after the axios call has been made, send our data to the database.
@@ -231,7 +239,10 @@ the new post modal will not pop up (close the window).
         console.log("Error:");
         console.log(err);
       });
-
+      this.setState({
+        DisplayLoader: 0
+      });
+    };
   };
 
 
@@ -289,7 +300,7 @@ the new post modal will not pop up (close the window).
     //sessionStorage.setItem('otherProfile', event.target.getAttribute("name"));
     //console.log(event.target.getAttribute("name"));
     //window.location.href = '/user/';
-  }
+  };
 
   handleCategoryRedirect = () => {
     sessionStorage.setItem('otherProfile', this.state.modalEmail);
@@ -359,6 +370,10 @@ modalAdventure: "",
             closeAdventureDetailModal={this.closeAdventureDetailModal}
             loadOtherProfile={this.loadOtherProfile}>
           </AdventureDetailModal>
+        : ""}
+
+        {this.state.displayLoader ?
+          <div id="loader"></div>
         : ""}
 
       </div>

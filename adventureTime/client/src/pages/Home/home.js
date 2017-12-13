@@ -26,7 +26,7 @@ class Home extends Component {
 		password2: "",
 		profilePic: "",
 		about: "",
-		adventureLevel: ""
+		adventureLevel: 1
 	};
 
 	/*this function will run when the "Create an Account" text is clicked by the user.
@@ -124,57 +124,60 @@ class Home extends Component {
 					const tempAbout = this.state.about;
 					const tempAdventureLevel = this.state.adventureLevel * 10;
 
+					if(tempFirst === "" || tempLast === "" || tempUserName === "" || tempEmail === "" || tempPassword === "" || tempAbout === "" || tempAdventureLevel === "" || this.state.uploadPictureData === ""){
+						alert("Please fill out all information before submitting.");
+					}else {
+				  	//send a call to the cloudinary API to post a new user picture to the cloud database.
+						axios({
+							url: this.state.cloudinary_url,
+							method: "post",
+							headers: {
+								'Content-Type': 'application/x-www-form-urlencoded'
+							},
+							data: this.state.uploadPictureData
+						}).then(function(res){
+							console.log(res);
 
-			  	//send a call to the cloudinary API to post a new user picture to the cloud database.
-					axios({
-						url: this.state.cloudinary_url,
-						method: "post",
-						headers: {
-							'Content-Type': 'application/x-www-form-urlencoded'
-						},
-						data: this.state.uploadPictureData
-					}).then(function(res){
-						console.log(res);
+							//set up session variables to save the unique username and information to be used throughout the application.
+							//We are using javascript to set session variables. Ideally this would be done with Redux, but due to time constraints this is the route we decided to use.
 
-						//set up session variables to save the unique username and information to be used throughout the application.
-						//We are using javascript to set session variables. Ideally this would be done with Redux, but due to time constraints this is the route we decided to use.
+							//after the axios call has been made, send our data to the database.
+							API.saveUser({
+						    "firstName" : tempFirst,
+						    "lastName" : tempLast,
+						    "userName" : tempUserName,
+						    "email" : tempEmail,
+						    "password" : tempPassword,
+						    "profilePic": "https://res.cloudinary.com/copilot28/image/upload/a_exif/" + res.data.public_id + ".jpeg",
+						    // "profilePic": res.data.secure_url,
 
-						//after the axios call has been made, send our data to the database.
-						API.saveUser({
-					    "firstName" : tempFirst,
-					    "lastName" : tempLast,
-					    "userName" : tempUserName,
-					    "email" : tempEmail,
-					    "password" : tempPassword,
-					    "profilePic": "https://res.cloudinary.com/copilot28/image/upload/a_exif/" + res.data.public_id + ".jpeg",
-					    // "profilePic": res.data.secure_url,
-
-					    // https://res.cloudinary.com/copilot28/image/upload/a_exif/v1512000198/pr9b3zqdyxfifsiffur6.jpg
-					    "about" : tempAbout,
-					    "adventureLevel" : tempAdventureLevel
-					  })
-					  //set session variables to store user information throughout the session. should be replaced with Redux in future iterations. 
-						sessionStorage.setItem('userName', tempUserName);
-						sessionStorage.setItem('loggedIn', "true");
-						sessionStorage.setItem('firstName', tempFirst);
-						sessionStorage.setItem('lastName', tempLast);
-						sessionStorage.setItem('email', tempEmail);
-						sessionStorage.setItem('profilePic', res.data.secure_url);
-						sessionStorage.setItem('about', tempAbout);
-						sessionStorage.setItem('adventureLevel', tempAdventureLevel);
-						sessionStorage.setItem('viewOtherUser', 0);
-						sessionStorage.setItem('otherProfile', "");
-						//set a timout function to ensure the program has finished before moving forward to the next page.
-					  if(sessionStorage.getItem('loggedIn') == "true"){
-			    		setTimeout(function(){
-					    	window.location.href = '/user';
-							}, 1000);
-					  }
-					}).catch(function(err){
-						console.log(err);
-						sessionStorage.setItem('userName', "");
-						sessionStorage.setItem('loggedIn', "false");
-					});
+						    // https://res.cloudinary.com/copilot28/image/upload/a_exif/v1512000198/pr9b3zqdyxfifsiffur6.jpg
+						    "about" : tempAbout,
+						    "adventureLevel" : tempAdventureLevel
+						  })
+						  //set session variables to store user information throughout the session. should be replaced with Redux in future iterations. 
+							sessionStorage.setItem('userName', tempUserName);
+							sessionStorage.setItem('loggedIn', "true");
+							sessionStorage.setItem('firstName', tempFirst);
+							sessionStorage.setItem('lastName', tempLast);
+							sessionStorage.setItem('email', tempEmail);
+							sessionStorage.setItem('profilePic', res.data.secure_url);
+							sessionStorage.setItem('about', tempAbout);
+							sessionStorage.setItem('adventureLevel', tempAdventureLevel);
+							sessionStorage.setItem('viewOtherUser', 0);
+							sessionStorage.setItem('otherProfile', "");
+							//set a timout function to ensure the program has finished before moving forward to the next page.
+						  if(sessionStorage.getItem('loggedIn') == "true"){
+				    		setTimeout(function(){
+						    	window.location.href = '/user';
+								}, 1000);
+						  }
+						}).catch(function(err){
+							console.log(err);
+							sessionStorage.setItem('userName', "");
+							sessionStorage.setItem('loggedIn', "false");
+						});
+					}
 				};
       })
       .catch(function(err)  {
@@ -293,10 +296,10 @@ class Home extends Component {
 				/>
 				<div className="quotes"><h2>Adventure is worth while itself</h2>
 				</div>
-				<div class="img-container">
-					<img onClick={this.loadHiking} width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive"/>
-					<img onClick={this.loadFishing} width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive"/>
-					<img onClick={this.loadBiking} width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive"/>
+				<div className="img-container">
+					<img id="categoryPic" onClick={this.loadHiking} width="300px" margin="100px" height="250px" src={'Images/hiking2.jpeg'} alt="hiking pic" className="img-responsive categoryImage"/>
+					<img id="categoryPic" onClick={this.loadFishing} width="300px" margin="100px" height="250px" src={'Images/fishing.jpeg'} alt="hiking pic" className="img-responsive categoryImage"/>
+					<img id="categoryPic" onClick={this.loadBiking} width="300px" margin="100px" height="250px" src={'Images/mountainbiking.jpeg'} alt="hiking pic" className="img-responsive categoryImage"/>
 				</div>
 				<Footer>
 				</Footer>

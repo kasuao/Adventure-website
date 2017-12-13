@@ -23,7 +23,7 @@ const BodyCategory = props =>
               <div className="row">
                 <div className="col-md-1">
                 </div>
-                <div className="col-md-10">
+                <div className="col-md-10 center">
                   <img className="postPic" src={result.adventurePic} />
                 </div>
               </div>
